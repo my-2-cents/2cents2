@@ -7,7 +7,7 @@ import {
   Navigator
 } from 'react-native';
 
-export default class LoginSignup extends React.Component {
+export default class Splash extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,14 +18,12 @@ export default class LoginSignup extends React.Component {
   }
 
   onLoginPress(){
-    console.log('on login pressed')
     this.props.navigator.push({
       id: 'Login'
     });
   };
 
   onSignupPress() {
-    console.log('on signup pressed')
     this.props.navigator.push({
       id: 'Signup'
     })
@@ -38,7 +36,7 @@ export default class LoginSignup extends React.Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text>LoginSignup</Text>
+        <Text>Splash</Text>
         <TouchableHighlight onPress={this.onLoginPress.bind(this)} style={styles.touch}>
           <Text>Go To Login!</Text>
         </TouchableHighlight>
