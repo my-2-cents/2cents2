@@ -21,6 +21,7 @@ export default class Signup extends React.Component {
 
   touch() {
     console.log('signup touched!')
+  }
 
   goHome() {
     console.log('goHome pressed')
@@ -40,7 +41,7 @@ export default class Signup extends React.Component {
         </TouchableHighlight>
         <TouchableHighlight onPress={this.touch} style={styles.touch}>
           <Text>touch me!</Text>
-
+          </TouchableHighlight>
         <TouchableHighlight onPress={this.goHome.bind(this)} style={styles.touch}>
           <Text>go to home!</Text>
 
