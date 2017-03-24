@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Navigator } from 'react-native';
-import LoginSignup from './components/onboard/LoginSignup';
+
+import Splash from './components/onboard/Splash';
 import Login from './components/onboard/Login';
 import Signup from './components/onboard/Signup';
 import Home from './components/navBar/Home';
@@ -14,15 +15,15 @@ export default class App extends React.Component {
     return (
       <Navigator
         initialRoute={{
-          id: 'LoginSignup'
+          id: 'Splash'
         }}
         renderScene={(route, navigator) => {
             _navigator = navigator;
-            if (route.id === 'LoginSignup') {
+            if (route.id === 'Splash') {
               return (
-                <LoginSignup
+                <Splash
                   navigator={navigator}
-                  title={'LoginSignup'}
+                  title={'Splash'}
                 />
               )
             }
