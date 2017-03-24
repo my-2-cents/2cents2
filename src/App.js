@@ -10,15 +10,6 @@ import Profile from './components/navBar/Profile';
 import Activity from './components/navBar/Activity';
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state= {
-      loginUsername: ''
-    }
-  }
-
-
   render() {
     return (
       <Navigator

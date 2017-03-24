@@ -2485,6 +2485,10 @@ react-deep-force-update@^1.0.0:
   dependencies:
     eventemitter3 "^2.0.2"
 
+react-native-form@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-form/-/react-native-form-2.1.2.tgz#f962cfff0f1a6f4192daf48c649954c9b796def4"
+
 "react-native-maps@https://github.com/exponent/react-native-maps/archive/v0.12.2-exp.1.tar.gz":
   version "0.12.2"
   resolved "https://github.com/exponent/react-native-maps/archive/v0.12.2-exp.1.tar.gz#1984bfe5a8a341dd3b44ad565cfcd1b25a5c2b03"
