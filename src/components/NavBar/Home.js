@@ -4,56 +4,78 @@ import {
   Text,
   TouchableHighlight,
   View,
-  Navigator
+  Navigator,
+  ScrollView
 } from 'react-native';
 
 import Nav from './Nav.js'
 
+import { Charities } from '../bits/Charities';
+import { TodaysDate } from '../bits/TodaysDate';
+import { Feed } from '../bits/Feed';
+import { GoalPiechart } from '../bits/GoalPiechart';
+import { UserName } from '../bits/UserName';
+
 export default class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      placeholder: 'hi'
-    }
-  }
 
   render() {
     return(
       <View style={styles.container}>
-        <Text>Home screen!</Text>
-      </View>
+          <View style={styles.headerBar}>
+            <UserName />
+            <TodaysDate />
+          </View>
+          <Text>My name is {this.props.name}</Text>
+          <View style={styles.piechart}>
+            <GoalPiechart />
+          </View>
+          <View style={styles.charities}>
+            <Charities />
+          </View>
+          <ScrollView style={styles.feed}>
+            <Feed />
+          </ScrollView>
+        </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fafafa'
   },
-  largeWords: {
-    fontSize: 20,
+  headerBar: {
+    padding: 20,
+    // flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(100,149,237, 1)',
+    width: '100%',
+    height: 80,
   },
-  enterInfo: {
-    margin: 10,
-    height: 50,
-    width: 240,
-    alignSelf: 'center',
-    textAlign: 'center',
-    borderWidth: 1,
-    borderColor: 'grey'
+  piechart: {
+    padding: 20,
+    // flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(100,149,237, 0.2)',
+    width: '100%',
+    height: 200,
   },
-  goWords: {
-    fontSize: 40,
-    width: 240,
-    textAlign: 'center',
-    backgroundColor: '#addfad',
+  charities: {
+    padding: 20,
+    // flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(100,149,237, 0.3)',
+    width: '100%',
+    height: 170,
   },
-  backArrow: {
-    position: 'absolute',
-    top: 25,
-    left: 25,
+  feed: {
+    backgroundColor: 'rgba(100,149,237, 0.2)',
+    width: '100%',
+    height: 600,
   }
-})
+});

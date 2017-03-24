@@ -1,26 +1,23 @@
 import React from 'react';
 import {
+  ScrollView,
   StyleSheet,
-  Text,
-  TouchableHighlight,
   View,
+  Text,
+  Image,
   Navigator
 } from 'react-native';
 
 import Nav from './Nav.js'
 
+import { ActivityList } from '../bits/ActivityList';
+
 export default class Activity extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      placeholder: 'hi'
-    }
-  }
 
   render() {
     return(
       <View style={styles.container}>
-        <Text>Activity screen!</Text>
+        <ActivityList />
       </View>
     )
   }
