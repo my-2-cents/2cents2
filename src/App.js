@@ -31,20 +31,20 @@ export default class App extends React.Component {
   }
 
   onLoginSubmit(renderAfterLogin) {
-    console.log('inside login submit:', this.state)
-    return fetch('http://localhost:3000/test', {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/JSON'
-      }
-    })
-    .then(r => r.json())
-    .then( (data) => {
-      console.log('data:', data)
-    })
-    .then(() => {
-      renderAfterLogin('Nav')
-    })
+    // console.log('inside login submit:', this.state)
+    // return fetch('http://localhost:3000/test', {
+    //   method: 'GET',
+    //   headers: {
+    //     'content-type': 'application/JSON'
+    //   }
+    // })
+    // .then(r => r.json())
+    // .then( (data) => {
+    //   console.log('data:', data)
+    // })
+    // .then(() => {
+    // })
+    renderAfterLogin('Nav')
   }
 
   render() {

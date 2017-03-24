@@ -79,7 +79,7 @@ export default class Signup extends React.Component {
           value={this.state.signupConfirm}
           onChangeText={this.trackSignupConfirm.bind(this)}
         />
-        <TouchableHighlight onPress={this.handleSignupSubmit.bind(this)}>
+        <TouchableHighlight onPress={this.goForward.bind(this)}>
           <Text style={styles.goWords}>
             Go!
           </Text>
