@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Navigator } from 'react-native';
-import LoginSignup from './components/LoginSignup';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Home from './components/NavBar/Home';
-import Nav from './components/NavBar/Nav';
-import Charities from './components/NavBar/Charities';
-import Profile from './components/NavBar/Profile';
-import Activity from './components/NavBar/Activity';
+import LoginSignup from './components/onboard/LoginSignup';
+import Login from './components/onboard/Login';
+import Signup from './components/onboard/Signup';
+import Home from './components/navBar/Home';
+import Nav from './components/navBar/Nav';
+import Charities from './components/navBar/Charities';
+import Profile from './components/navBar/Profile';
+import Activity from './components/navBar/Activity';
 
 export default class App extends React.Component {
   render() {

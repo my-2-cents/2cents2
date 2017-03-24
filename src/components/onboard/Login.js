@@ -17,10 +17,6 @@ export default class Login extends React.Component {
     }
   }
 
-  touch() {
-    console.log('touch!')
-  }
-
   goBack() {
     this.props.navigator.pop();
   }
