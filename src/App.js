@@ -11,6 +11,42 @@ import Profile from './components/navBar/Profile';
 import Activity from './components/navBar/Activity';
 
 export default class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state= {
+    }
+  }
+
+  trackLoginUsername(text) {
+    this.setState({
+      loginUsername: text
+    })
+  };
+
+  trackLoginPassword(text) {
+    this.setState({
+      loginPassword: text
+    })
+  }
+
+  onLoginSubmit(renderAfterLogin) {
+    console.log('inside login submit:', this.state)
+    return fetch('http://localhost:3000/test', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/JSON'
+      }
+    })
+    .then(r => r.json())
+    .then( (data) => {
+      console.log('data:', data)
+    })
+    .then(() => {
+      renderAfterLogin('Nav')
+    })
+  }
+
   render() {
     return (
       <Navigator
@@ -32,6 +68,9 @@ export default class App extends React.Component {
                 <Login
                   navigator={navigator}
                   title={'Login'}
+                  trackLoginUsername={this.trackLoginUsername.bind(this)}
+                  trackLoginPassword={this.trackLoginPassword.bind(this)}
+                  onLoginSubmit={this.onLoginSubmit.bind(this)}
                 />
               )
             }
