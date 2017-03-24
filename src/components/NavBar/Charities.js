@@ -7,7 +7,9 @@ import {
   Navigator
 } from 'react-native';
 
-export default class Signup extends React.Component {
+import Nav from './Nav.js'
+
+export default class Charities extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,36 +17,10 @@ export default class Signup extends React.Component {
     }
   }
 
-  goBack() {
-    this.props.navigator.pop();
-  }
-
-  touch() {
-    console.log('signup touched!')
-
-  goHome() {
-    console.log('goHome pressed')
-    this.props.navigator.push({
-      id: 'Home'
-    });
-
-  }
-
   render() {
     return(
       <View style={styles.container}>
-        <Text>Signup</Text>
-
-        <TouchableHighlight onPress={this.goBack.bind(this)} style={styles.touch}>
-          <Text>go back!</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.touch} style={styles.touch}>
-          <Text>touch me!</Text>
-
-        <TouchableHighlight onPress={this.goHome.bind(this)} style={styles.touch}>
-          <Text>go to home!</Text>
-
-        </TouchableHighlight>
+        <Text>Charities screen!</Text>
       </View>
     )
   }
@@ -56,12 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fafafa'
-  },
-  touch: {
-    height: 40,
-    width: 100,
-    backgroundColor: '#fadfad',
-    marginBottom: 20
   },
   largeWords: {
     fontSize: 20,
