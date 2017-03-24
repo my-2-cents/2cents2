@@ -15,6 +15,10 @@ export default class Signup extends React.Component {
     }
   }
 
+  goBack() {
+    this.props.navigator.pop();
+  }
+
   touch() {
     console.log('signup touched!')
   }
@@ -23,7 +27,10 @@ export default class Signup extends React.Component {
     return(
       <View style={styles.container}>
         <Text>Signup</Text>
-        <TouchableHighlight onPress={this.touch}>
+        <TouchableHighlight onPress={this.goBack.bind(this)} style={styles.touch}>
+          <Text>go back!</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this.touch} style={styles.touch}>
           <Text>touch me!</Text>
         </TouchableHighlight>
       </View>
