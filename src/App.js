@@ -23,7 +23,7 @@ export default class App extends React.Component {
     return (
       <Navigator
         initialRoute={{
-          id: 'Home'
+          id: 'LoginSignup'
         }}
         renderScene={(route, navigator) => {
             _navigator = navigator;
@@ -51,50 +51,12 @@ export default class App extends React.Component {
                 />
               )
             }
-            if (route.id === 'Home') {
+            if (route.id === 'Nav') {
               return (
                 <View style={styles.container}>
-                  <Home
-                    title={'Home'}
-                  />
                   <Nav
                     navigator={navigator}
-                  />
-                </View>
-              )
-            }
-            if (route.id === 'Activity') {
-              return (
-                <View style={styles.container}>
-                  <Activity
-                    title={'Activity'}
-                  />
-                  <Nav
-                    navigator={navigator}
-                  />
-                </View>
-              )
-            }
-            if (route.id === 'Charities') {
-              return (
-                <View style={styles.container}>
-                  <Charities
-                    title={'Charities'}
-                  />
-                  <Nav
-                    navigator={navigator}
-                  />
-                </View>
-              )
-            }
-            if (route.id === 'Profile') {
-              return (
-                <View style={styles.container}>
-                  <Profile
-                    title={'Profile'}
-                  />
-                  <Nav
-                    navigator={navigator}
+                    title={'Nav'}
                   />
                 </View>
               )

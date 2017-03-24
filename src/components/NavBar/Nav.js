@@ -7,61 +7,85 @@ import {
   Navigator
 } from 'react-native';
 
+import Home from './Home';
+import Charities from './Charities';
+import Activity from './Activity';
+import Profile from './Profile';
+
 export default class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      placeholder: 'hi'
+      selected: 'Home'
     }
   }
 
   onHomePress() {
-    console.log('home pressed')
-    this.props.navigator.push({
-      id: 'Home'
+    this.setState({
+      selected: 'Home'
+    })
+  }
+
+  onCharitiesPress() {
+    this.setState({
+      selected: 'Charities'
     })
   }
 
   onActivityPress() {
     console.log('activity pressed')
-    this.props.navigator.push({
-      id: 'Activity'
-    })
-  }
-
-  onCharitiesPress() {
-    console.log('charities pressed')
-    this.props.navigator.push({
-      id: 'Charities'
+    this.setState({
+      selected: 'Activity'
     })
   }
 
   onProfilePress() {
     console.log('profile pressed')
-    this.props.navigator.push({
-      id: 'Profile'
+    this.setState({
+      selected: 'Profile'
     })
   }
 
-  touch() {
-    console.log('signup touched!')
+  renderNavContent() {
+    if (this.state.selected === 'Home') {
+      return(
+        <Home />
+      )
+    } else if (this.state.selected === 'Charities') {
+      return(
+        <Charities />
+      )
+    } else if (this.state.selected === 'Activity') {
+      return(
+        <Activity />
+      )
+    } else if (this.state.selected === 'Profile') {
+      return(
+        <Profile />
+      )
+    }
   }
 
   render() {
     return(
-      <View style={styles.navBar}>
-        <TouchableHighlight onPress={this.onHomePress.bind(this)} style={[styles.navBarItem, styles.one]}>
-          <Text>home</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.onCharitiesPress.bind(this)} style={[styles.navBarItem, styles.two]}>
-          <Text>charities</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.onProfilePress.bind(this)} style={[styles.navBarItem, styles.three]}>
-          <Text>profile</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.onActivityPress.bind(this)} style={[styles.navBarItem, styles.four]}>
-          <Text>activity</Text>
-        </TouchableHighlight>
+      <View style={styles.container}>
+        <View>
+          {this.renderNavContent()}
+        </View>
+        <View style={styles.navBar}>
+          <TouchableHighlight onPress={this.onHomePress.bind(this)} style={[styles.navBarItem, styles.one]}>
+            <Text>home</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onCharitiesPress.bind(this)} style={[styles.navBarItem, styles.two]}>
+            <Text>charities</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onProfilePress.bind(this)} style={[styles.navBarItem, styles.three]}>
+            <Text>profile</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onActivityPress.bind(this)} style={[styles.navBarItem, styles.four]}>
+            <Text>activity</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }

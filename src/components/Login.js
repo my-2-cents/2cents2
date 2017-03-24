@@ -26,6 +26,12 @@ export default class Login extends React.Component {
     this.props.navigator.pop();
   }
 
+  goForward() {
+    this.props.navigator.push({
+      id: 'Nav'
+    });
+  }
+
   render() {
     return(
       <View style={styles.container}>
@@ -58,7 +64,7 @@ export default class Login extends React.Component {
         <TouchableHighlight onPress={this.goBack.bind(this)} style={styles.touch}>
           <Text>go back!</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.touch} style={styles.touch}>
+        <TouchableHighlight onPress={this.goForward.bind(this)} style={styles.touch}>
           <Text>touch me!</Text>
         </TouchableHighlight>
       </View>

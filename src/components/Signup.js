@@ -15,36 +15,18 @@ export default class Signup extends React.Component {
     }
   }
 
-  goBack() {
-    this.props.navigator.pop();
-  }
-
-  touch() {
-    console.log('signup touched!')
-  }
-
-  goHome() {
-    console.log('goHome pressed')
+  goForward() {
     this.props.navigator.push({
-      id: 'Home'
+      id: 'Nav'
     });
-
   }
 
   render() {
     return(
       <View style={styles.container}>
         <Text>Signup</Text>
-
-        <TouchableHighlight onPress={this.goBack.bind(this)} style={styles.touch}>
-          <Text>go back!</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.touch} style={styles.touch}>
-          <Text>touch me!</Text>
-          </TouchableHighlight>
-        <TouchableHighlight onPress={this.goHome.bind(this)} style={styles.touch}>
+        <TouchableHighlight onPress={this.goForward.bind(this)} style={styles.touch}>
           <Text>go to home!</Text>
-
         </TouchableHighlight>
       </View>
     )
