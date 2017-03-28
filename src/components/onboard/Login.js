@@ -1,12 +1,12 @@
 import React from 'react';
 import {
+  KeyboardAvoidingView,
+  Navigator,
   StyleSheet,
   Text,
+  TextInput,
   TouchableHighlight,
-  View,
-  Navigator,
-  KeyboardAvoidingView,
-  TextInput
+  View
 } from 'react-native';
 
 export default class Login extends React.Component {

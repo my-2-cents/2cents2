@@ -12,7 +12,6 @@ export default class LoginSignup extends React.Component {
     super(props);
     this.state = {
       loggedInUser: null,
-      totalWorkouts: null,
       behavior: 'padding',
     }
   }

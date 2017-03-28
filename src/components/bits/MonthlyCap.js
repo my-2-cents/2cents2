@@ -25,23 +25,23 @@ export class MonthlyCap extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cap: 0,
+      cap: 15,
     }
   }
 
   handleIncreaseCap = ()=> {
     let cap = this.state.cap;
-    this.setState ({
-      cap: cap +5
-    });
+    this.setState(prevState => ({
+      cap: prevState.cap + 1})
+    );
   }
 
   handleDecreaseCap = ()=> {
     let cap = this.state.cap;
     if (this.state.cap > 0) {
-      this.setState ({
-        cap: cap -5
-      });
+      this.setState(prevState => ({
+        cap: prevState.cap - 1})
+      );
     }
   }
 
