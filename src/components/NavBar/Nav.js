@@ -13,10 +13,13 @@ import Activity from './Activity';
 import Profile from './Profile';
 
 export default class Nav extends React.Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'Home'
+      selected: 'Home',
+      username: ''
     }
   }
 
@@ -47,7 +50,7 @@ export default class Nav extends React.Component {
   renderNavContent() {
     if (this.state.selected === 'Home') {
       return(
-        <Home />
+        <Home username={this.state.username}/>
       )
     } else if (this.state.selected === 'Charities') {
       return(

@@ -25,7 +25,7 @@ export default class Home extends React.Component {
             <UserName />
             <TodaysDate />
           </View>
-          <Text>My name is {this.props.name}</Text>
+          <Text>My name is {this.props.username}</Text>
           <View style={styles.piechart}>
             <GoalPiechart />
           </View>
