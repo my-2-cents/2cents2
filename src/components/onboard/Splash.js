@@ -29,10 +29,6 @@ export default class Splash extends React.Component {
     })
   }
 
-  touch() {
-    console.log('touch!')
-  }
-
   render() {
     return(
       <View style={styles.container}>
@@ -85,3 +81,4 @@ const styles = StyleSheet.create({
     left: 25,
   }
 })
+

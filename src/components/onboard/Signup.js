@@ -4,31 +4,87 @@ import {
   Text,
   TouchableHighlight,
   View,
-  Navigator
+  Navigator,
+  KeyboardAvoidingView,
+  TextInput
 } from 'react-native';
 
 export default class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      placeholder: 'hi'
+      signupUsername: '',
+      signupPassword: '',
+      signupConfirm: '',
+      behavior: 'padding'
     }
   }
+
+  goBack() {
+    this.props.navigator.pop();
+  };
 
   goForward() {
     this.props.navigator.push({
       id: 'Nav'
     });
+  };
+
+  trackSignupUsername(text) {
+    this.setState({
+      signupUsername: text
+    })
+  };
+
+  trackSignupPassword(text) {
+    this.setState({
+      signupPassword: text
+    })
+  }
+
+  trackSignupConfirm(text) {
+    this.setState({
+      signupConfirm: text
+    })
+  }
+
+  handleSignupSubmit() {
+    console.log(this.state)
   }
 
   render() {
     return(
-      <View style={styles.container}>
-        <Text>Signup</Text>
-        <TouchableHighlight onPress={this.goForward.bind(this)} style={styles.touch}>
-          <Text>go to home!</Text>
+      <KeyboardAvoidingView behavior={this.state.behavior} style={styles.container}>
+        <TouchableHighlight onPress={this.goBack.bind(this)} style={styles.backArrow}>
+          <Text>Go Back</Text>
         </TouchableHighlight>
-      </View>
+        <Text style={styles.largeWords}>
+          Username:
+        </Text>
+        <TextInput style={styles.enterInfo}
+          value={this.state.signupUsername}
+          onChangeText={this.trackSignupUsername.bind(this)}
+        />
+        <Text style={styles.largeWords}>
+          Password:
+        </Text>
+        <TextInput style={styles.enterInfo}
+          value={this.state.signupPassword}
+          onChangeText={this.trackSignupPassword.bind(this)}
+        />
+        <Text style={styles.largeWords}>
+          Confirm Password:
+        </Text>
+        <TextInput style={styles.enterInfo}
+          value={this.state.signupConfirm}
+          onChangeText={this.trackSignupConfirm.bind(this)}
+        />
+        <TouchableHighlight onPress={this.goForward.bind(this)}>
+          <Text style={styles.goWords}>
+            Go!
+          </Text>
+        </TouchableHighlight>
+      </KeyboardAvoidingView>
     )
   }
 }

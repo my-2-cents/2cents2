@@ -33,14 +33,12 @@ export default class Nav extends React.Component {
   }
 
   onActivityPress() {
-    console.log('activity pressed')
     this.setState({
       selected: 'Activity'
     })
   }
 
   onProfilePress() {
-    console.log('profile pressed')
     this.setState({
       selected: 'Profile'
     })

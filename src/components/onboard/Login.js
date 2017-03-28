@@ -2,44 +2,54 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
-  KeyboardAvoidingView,
   TouchableHighlight,
   View,
-  Navigator
+  Navigator,
+  KeyboardAvoidingView,
+  TextInput
 } from 'react-native';
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedInUser: null,
-      totalWorkouts: null,
       behavior: 'padding',
     }
   }
 
   goBack() {
     this.props.navigator.pop();
-  }
+  };
 
   goForward() {
     this.props.navigator.push({
       id: 'Nav'
     });
+  };
+
+  renderAfterLogin(scene) {
+    this.props.navigator.push({
+      id: scene,
+    })
+  }
+
+  handleLoginSubmit() {
+    console.log(this.state)
   }
 
   render() {
     return(
-      <View style={styles.container}>
-
-
+      <KeyboardAvoidingView behavior={this.state.behavior} style={styles.container}>
+        <TouchableHighlight onPress={() => this.props.navigator.pop()} style={styles.backArrow}>
+          <Text>Go back</Text>
+        </TouchableHighlight>
         <Text style={styles.largeWords}>
           Username:
         </Text>
         <KeyboardAvoidingView behavior={this.state.behavior}>
           <TextInput style={styles.enterInfo}
             value={this.state.loginUsername}
-            onChangeText={(loginUsername) => this.props.handleLoginUsername(loginUsername)}
+            onChangeText={this.props.trackLoginUsername.bind(this)}
           />
         </KeyboardAvoidingView>
         <Text style={styles.largeWords}>
@@ -47,23 +57,14 @@ export default class Login extends React.Component {
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.loginPassword}
-          onChangeText={(loginPassword) => this.props.handleLoginPassword(loginPassword)}
+          onChangeText={this.props.trackLoginPassword.bind(this)}
         />
         <TouchableHighlight onPress={() => {this.props.onLoginSubmit(this.renderAfterLogin.bind(this))}}>
           <Text style={styles.goWords}>
             Go!
           </Text>
         </TouchableHighlight>
-
-
-        <Text>Login</Text>
-        <TouchableHighlight onPress={this.goBack.bind(this)} style={styles.touch}>
-          <Text>go back!</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.goForward.bind(this)} style={styles.touch}>
-          <Text>touch me!</Text>
-        </TouchableHighlight>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
