@@ -14,18 +14,27 @@ export default class Charities extends React.Component {
       pp: true,
       unicef: true,
       aclu: true,
-      total: 3
+      total: 3,
+      sliceColor: ['#F44336', '#2196F3', '#FFEB3B']
     };
   }
 
   updatePP(e) {
     if (this.state.pp === true) {
-      this.setState({ series: this.state.series.slice(1) }, () =>
+      this.setState({
+        series: this.state.series.slice(1),
+        sliceColor: this.state.sliceColor.slice(1)
+    }, () =>
         console.log(this.state));
     } else {
       let secSer = this.state.series;
+      let secSli = this.state.sliceColor;
       secSer.unshift(1);
-      this.setState({ series: secSer }, () =>
+      secSli.unshift('#F44336')
+      this.setState({
+        series: secSer,
+        sliceColor: secSli
+      }, () =>
         console.log(this.state));
     }
     let bool = this.state.pp;
@@ -38,25 +47,52 @@ export default class Charities extends React.Component {
     if (this.state.unicef === true) {
       if (this.state.pp === true && this.state.aclu === true) {
         let secSer = [this.state.series[0], this.state.series[2]];
-        this.setState({ series: secSer }, () => console.log(this.state.series));
+        let secSli = [this.state.sliceColor[0], this.state.sliceColor[2]];
+        this.setState({
+          series: secSer,
+          sliceColor: secSli
+        }, () => console.log(this.state.series));
       } else if (this.state.pp === true) {
-        let secSer = this.state.series.pop();
-        this.setState({ series: secSer }, () => console.log(this.state.series));
+        let secSer = this.state.series
+        let secSli = this.state.sliceColor
+        secSer.pop();
+        secSli.pop();
+        this.setState({
+          series: secSer,
+          sliceColor: secSli
+        }, () => console.log(this.state.series));
       } else if (!this.state.pp && this.state.aclu === true) {
         let secSer = [this.state.series[1]];
-        console.log('here', secSer);
-        this.setState({ series: secSer }, () => console.log(this.state.series));
+        let secSli = [this.state.sliceColor[1]];
+        this.setState({
+          series: secSer,
+          sliceColor: secSli
+        }, () => console.log(this.state.series));
       }
     } else {
       if (this.state.pp === true && this.state.aclu === true) {
         let secSer = [this.state.series[0], 2, this.state.series[1]];
-        this.setState({ series: secSer }, () => console.log(this.state.series));
+        let secSli = [this.state.sliceColor[0], '#2196F3', this.state.sliceColor[1]];
+        this.setState({
+          series: secSer,
+          sliceColor: secSli
+        }, () => console.log(this.state.series));
       } else if (this.state.pp === true) {
-        let secSer = this.state.series.push(2);
-        this.setState({ series: secSer }, () => console.log(this.state.series));
+        let secSer = this.state.series
+        let secSli = this.state.sliceColor
+        secSer.push(2);
+        secSli.push('#2196F3');
+        this.setState({
+          series: secSer,
+          sliceColor: secSli
+        }, () => console.log(this.state.series));
       } else if (!this.state.pp && this.state.aclu === true) {
         let secSer = [2, this.state.series[0]];
-        this.setState({ series: secSer }, () => console.log(this.state.series));
+        let secSli = ['#2196F3', this.state.sliceColor[0]];
+        this.setState({
+          series: secSer,
+          sliceColor: secSli
+        }, () => console.log(this.state.series));
       }
     }
     let bool = this.state.unicef;
@@ -84,7 +120,10 @@ export default class Charities extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Graph series={this.state.series} />
+        <Graph
+          series={this.state.series}
+          sliceColor={this.state.sliceColor}
+        />
         <Slider />
         <CharitiesList
           updatePP={this.updatePP.bind(this)}
