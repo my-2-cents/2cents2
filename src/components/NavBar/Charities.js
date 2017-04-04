@@ -10,7 +10,7 @@ export default class Charities extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      series: [1, 2, 3],
+      series: [1, 1, 1],
       pp: true,
       unicef: true,
       aclu: true,
@@ -69,7 +69,7 @@ export default class Charities extends React.Component {
       }
     } else {
       if (this.state.pp === true && this.state.aclu === true) {
-        let secSer = [this.state.series[0], 2, this.state.series[1]];
+        let secSer = [this.state.series[0], 1, this.state.series[1]];
         let secSli = [
           this.state.sliceColor[0],
           '#2196F3',
@@ -82,14 +82,14 @@ export default class Charities extends React.Component {
       } else if (this.state.pp === true) {
         let secSer = this.state.series;
         let secSli = this.state.sliceColor;
-        secSer.push(2);
+        secSer.push(1);
         secSli.push('#2196F3');
         this.setState({
           series: secSer,
           sliceColor: secSli
         });
       } else if (!this.state.pp && this.state.aclu === true) {
-        let secSer = [2, this.state.series[0]];
+        let secSer = [1, this.state.series[0]];
         let secSli = ['#2196F3', this.state.sliceColor[0]];
         this.setState({
           series: secSer,
@@ -106,12 +106,22 @@ export default class Charities extends React.Component {
   updateACLU(e) {
     if (this.state.aclu === true) {
       let secSer = this.state.series;
+      let secSli = this.state.sliceColor
       secSer.pop();
-      this.setState({ series: secSer });
+      secSli.pop()
+      this.setState({
+        series: secSer,
+        sliceColor: secSli
+      });
     } else {
       let secSer = this.state.series;
-      secSer.push(3);
-      this.setState({ series: secSer });
+      let secSli = this.state.sliceColor
+      secSer.push(1);
+      secSli.push('#FFEB3B')
+      this.setState({
+        series: secSer,
+        sliceColor: secSli
+      });
     }
     let bool = this.state.aclu;
     this.setState({
