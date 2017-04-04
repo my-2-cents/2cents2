@@ -7,19 +7,19 @@ export default class CharitiesList extends React.Component {
     return (
       <View>
         <Checkbox
-          label="PP"
+          label="PP (1)"
           checked={this.props.pp}
           onChange={this.props.updatePP}
         />
         <Checkbox
-          label="ACLU"
-          checked={this.props.aclu}
-          onChange={this.props.updateACLU}
-        />
-        <Checkbox
-          label="UNICEF"
+          label="UNICEF (2)"
           checked={this.props.unicef}
           onChange={this.props.updateUNICEF}
+        />
+        <Checkbox
+          label="ACLU (3)"
+          checked={this.props.aclu}
+          onChange={this.props.updateACLU}
         />
       </View>
     );
