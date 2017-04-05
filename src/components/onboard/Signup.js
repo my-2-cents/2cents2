@@ -13,43 +13,18 @@ export default class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signupUsername: '',
-      signupPassword: '',
-      signupConfirm: '',
       behavior: 'padding'
     }
   }
 
+  renderAfterSignup(scene) {
+    this.props.navigator.push({
+      id: scene,
+    })
+  }
+
   goBack() {
     this.props.navigator.pop();
-  };
-
-  goForward() {
-    this.props.navigator.push({
-      id: 'Nav'
-    });
-  };
-
-  trackSignupUsername(text) {
-    this.setState({
-      signupUsername: text
-    })
-  };
-
-  trackSignupPassword(text) {
-    this.setState({
-      signupPassword: text
-    })
-  }
-
-  trackSignupConfirm(text) {
-    this.setState({
-      signupConfirm: text
-    })
-  }
-
-  handleSignupSubmit() {
-    console.log(this.state)
   }
 
   render() {
@@ -63,23 +38,23 @@ export default class Signup extends React.Component {
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.signupUsername}
-          onChangeText={this.trackSignupUsername.bind(this)}
+          onChangeText={this.props.trackSignupUsername}
         />
         <Text style={styles.largeWords}>
           Password:
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.signupPassword}
-          onChangeText={this.trackSignupPassword.bind(this)}
+          onChangeText={this.props.trackSignupPassword}
         />
         <Text style={styles.largeWords}>
           Confirm Password:
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.signupConfirm}
-          onChangeText={this.trackSignupConfirm.bind(this)}
+          onChangeText={this.props.trackSignupConfirm}
         />
-        <TouchableHighlight onPress={this.goForward.bind(this)}>
+        <TouchableHighlight onPress={() => {this.props.onSignupSubmit(this.renderAfterSignup.bind(this))}}>
           <Text style={styles.goWords}>
             Go!
           </Text>
