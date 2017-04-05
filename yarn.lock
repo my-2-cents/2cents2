@@ -2501,6 +2501,10 @@ react-native-form@^2.1.2:
   version "0.12.2"
   resolved "https://github.com/exponent/react-native-maps/archive/v0.12.2-exp.1.tar.gz#1984bfe5a8a341dd3b44ad565cfcd1b25a5c2b03"
 
+react-native-multi-slider@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/react-native-multi-slider/-/react-native-multi-slider-0.3.5.tgz#eda1f7b7062c74578441d434678a78052e120673"
+
 react-native-pie-chart@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-native-pie-chart/-/react-native-pie-chart-1.0.6.tgz#401c12649b5457bf77fb7b61eaaebf6d744cd6f4"

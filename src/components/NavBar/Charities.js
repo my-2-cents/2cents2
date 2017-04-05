@@ -10,137 +10,31 @@ export default class Charities extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      series: [1, 1, 1],
-      pp: true,
-      unicef: true,
-      aclu: true,
+      series: [33, 33, 33],
       total: 3,
-      sliceColor: ['#F44336', '#2196F3', '#FFEB3B']
     };
   }
 
-  updatePP(e) {
-    if (this.state.pp === true) {
-      this.setState({
-        series: this.state.series.slice(1),
-        sliceColor: this.state.sliceColor.slice(1)
-      });
-    } else {
-      let secSer = this.state.series;
-      let secSli = this.state.sliceColor;
-      secSer.unshift(1);
-      secSli.unshift('#F44336');
-      this.setState({
-        series: secSer,
-        sliceColor: secSli
-      });
-    }
-    let bool = this.state.pp;
-    this.setState({
-      pp: !bool
-    });
-  }
 
-  updateUNICEF(e) {
-    if (this.state.unicef === true) {
-      if (this.state.pp === true && this.state.aclu === true) {
-        let secSer = [this.state.series[0], this.state.series[2]];
-        let secSli = [this.state.sliceColor[0], this.state.sliceColor[2]];
-        this.setState({
-          series: secSer,
-          sliceColor: secSli
-        });
-      } else if (this.state.pp === true) {
-        let secSer = this.state.series;
-        let secSli = this.state.sliceColor;
-        secSer.pop();
-        secSli.pop();
-        this.setState({
-          series: secSer,
-          sliceColor: secSli
-        });
-      } else if (!this.state.pp && this.state.aclu === true) {
-        let secSer = [this.state.series[1]];
-        let secSli = [this.state.sliceColor[1]];
-        this.setState({
-          series: secSer,
-          sliceColor: secSli
-        });
-      }
-    } else {
-      if (this.state.pp === true && this.state.aclu === true) {
-        let secSer = [this.state.series[0], 1, this.state.series[1]];
-        let secSli = [
-          this.state.sliceColor[0],
-          '#2196F3',
-          this.state.sliceColor[1]
-        ];
-        this.setState({
-          series: secSer,
-          sliceColor: secSli
-        });
-      } else if (this.state.pp === true) {
-        let secSer = this.state.series;
-        let secSli = this.state.sliceColor;
-        secSer.push(1);
-        secSli.push('#2196F3');
-        this.setState({
-          series: secSer,
-          sliceColor: secSli
-        });
-      } else if (!this.state.pp && this.state.aclu === true) {
-        let secSer = [1, this.state.series[0]];
-        let secSli = ['#2196F3', this.state.sliceColor[0]];
-        this.setState({
-          series: secSer,
-          sliceColor: secSli
-        });
-      }
-    }
-    let bool = this.state.unicef;
-    this.setState({
-      unicef: !bool
-    });
-  }
 
-  updateACLU(e) {
-    if (this.state.aclu === true) {
-      let secSer = this.state.series;
-      let secSli = this.state.sliceColor
-      secSer.pop();
-      secSli.pop()
-      this.setState({
-        series: secSer,
-        sliceColor: secSli
-      });
-    } else {
-      let secSer = this.state.series;
-      let secSli = this.state.sliceColor
-      secSer.push(1);
-      secSli.push('#FFEB3B')
-      this.setState({
-        series: secSer,
-        sliceColor: secSli
-      });
-    }
-    let bool = this.state.aclu;
-    this.setState({
-      aclu: !bool
-    });
-  }
 
   render() {
     return (
       <View style={styles.container}>
-        <Graph series={this.state.series} sliceColor={this.state.sliceColor} />
-        <Slider />
+        <Graph
+          series={this.props.series}
+          sliceColor={this.props.sliceColor}
+        />
+        <Slider
+          adjustPercentage={this.props.adjustPercentage}
+        />
         <CharitiesList
-          updatePP={this.updatePP.bind(this)}
-          updateACLU={this.updateACLU.bind(this)}
-          updateUNICEF={this.updateUNICEF.bind(this)}
-          pp={this.state.pp}
-          aclu={this.state.aclu}
-          unicef={this.state.unicef}
+          updatePP={this.props.updatePP}
+          updateACLU={this.props.updateACLU}
+          updateUNICEF={this.props.updateUNICEF}
+          pp={this.props.pp}
+          aclu={this.props.aclu}
+          unicef={this.props.unicef}
         />
       </View>
     );
@@ -150,8 +44,9 @@ export default class Charities extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-around',
+    paddingTop: '15%',
+    paddingBottom: '30%',
   }
 });

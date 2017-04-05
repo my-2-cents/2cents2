@@ -1,15 +1,13 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text, Image } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, Image, TouchableHighlight } from 'react-native';
 import PieChart from 'react-native-pie-chart';
 
 export default class Graph extends React.Component {
   render() {
-    const chart_wh = 250;
-
     return (
       <View>
         <PieChart
-          chart_wh={chart_wh}
+          chart_wh={250}
           series={this.props.series}
           sliceColor={this.props.sliceColor}
         />
