@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 
 import Nav from './Nav.js';
 import Graph from '../bits/Graph.js';
@@ -10,14 +10,20 @@ export default class Charities extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <TouchableHighlight onPress={this.props.onHomePress} style={styles.check}>
+          <Text>done!</Text>
+        </TouchableHighlight>
         <Graph
           series={this.props.series}
           sliceColor={this.props.sliceColor}
         />
         <Fiddler
           sliderOneValue={this.props.sliderOneValue}
-          adjustPercentage={this.props.adjustPercentage}
+          adjustThirds={this.props.adjustThirds}
+          adjustHalves={this.props.adjustHalves}
           series={this.props.series}
+          sliceColor={this.props.sliceColor}
+          value={this.props.value}
         />
         <CharitiesList
           updatePP={this.props.updatePP}
@@ -39,5 +45,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingTop: '15%',
     paddingBottom: '30%',
+  },
+  check: {
+    position: 'absolute',
+    right: 0,
   }
 });

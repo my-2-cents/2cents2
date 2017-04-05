@@ -30,7 +30,8 @@ export default class Fiddler extends React.Component {
             sliderLength={280}
             min={1}
             max={100}
-            onValuesChange={this.props.adjustPercentage}
+            onValuesChange={this.props.adjustThirds}
+            maximumTrackTintColor={'red'}
           />
         </View>
       )
@@ -43,7 +44,10 @@ export default class Fiddler extends React.Component {
             thumbStyle={styles.thumbStyle}
             minimumValue={1}
             maximumValue={99}
-            value={50}
+            value={this.props.value}
+            onValueChange={this.props.adjustHalves}
+            minimumTrackTintColor={this.props.sliceColor[0]}
+            maximumTrackTintColor={this.props.sliceColor[1]}
           />
         </View>
       )
