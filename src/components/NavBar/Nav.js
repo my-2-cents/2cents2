@@ -21,7 +21,8 @@ export default class Nav extends React.Component {
       pp: true,
       unicef: true,
       aclu: true,
-      sliceColor: ['#F44336', '#2196F3', '#FFEB3B']
+      sliceColor: ['#F44336', '#2196F3', '#FFEB3B'],
+      sliderOneValue: [33, 66],
     }
   }
 
@@ -49,7 +50,7 @@ export default class Nav extends React.Component {
     })
   }
 
-  updatePP(e) {
+  updatePP() {
     if (this.state.pp === true) {
       this.setState({
         series: this.state.series.slice(1),
@@ -71,7 +72,7 @@ export default class Nav extends React.Component {
     });
   }
 
-  updateUNICEF(e) {
+  updateUNICEF() {
     if (this.state.unicef === true) {
       if (this.state.pp === true && this.state.aclu === true) {
         let secSer = [this.state.series[0], this.state.series[2]];
@@ -133,7 +134,7 @@ export default class Nav extends React.Component {
     });
   }
 
-  updateACLU(e) {
+  updateACLU() {
     if (this.state.aclu === true) {
       let secSer = this.state.series;
       let secSli = this.state.sliceColor
@@ -187,6 +188,7 @@ export default class Nav extends React.Component {
           sliceColor={this.state.sliceColor}
           series={this.state.series}
           adjustPercentage={this.adjustPercentage.bind(this)}
+          sliderOneValue={this.state.sliderOneValue}
         />
       )
     } else if (this.state.selected === 'Activity') {

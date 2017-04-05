@@ -3,21 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Nav from './Nav.js';
 import Graph from '../bits/Graph.js';
-import Slider from '../bits/Slider.js';
+import Fiddler from '../bits/Fiddler.js';
 import CharitiesList from '../bits/CharitiesList.js';
 
 export default class Charities extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      series: [33, 33, 33],
-      total: 3,
-    };
-  }
-
-
-
-
   render() {
     return (
       <View style={styles.container}>
@@ -25,8 +14,10 @@ export default class Charities extends React.Component {
           series={this.props.series}
           sliceColor={this.props.sliceColor}
         />
-        <Slider
+        <Fiddler
+          sliderOneValue={this.props.sliderOneValue}
           adjustPercentage={this.props.adjustPercentage}
+          series={this.props.series}
         />
         <CharitiesList
           updatePP={this.props.updatePP}
