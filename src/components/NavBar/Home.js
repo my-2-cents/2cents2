@@ -13,8 +13,8 @@ import Nav from './Nav.js'
 import { Charities } from '../bits/Charities';
 import { TodaysDate } from '../bits/TodaysDate';
 import { Feed } from '../bits/Feed';
-import { GoalPiechart } from '../bits/GoalPiechart';
 import { UserName } from '../bits/UserName';
+import { Graph } from '../bits/Graph';
 
 export default class Home extends React.Component {
 
@@ -25,10 +25,12 @@ export default class Home extends React.Component {
             <UserName />
             <TodaysDate />
           </View>
+
           <Text>My name is {this.props.username}</Text>
           <View style={styles.piechart}>
-            <GoalPiechart />
+            <Graph />
           </View>
+
           <View style={styles.charities}>
             <Charities />
           </View>
@@ -54,15 +56,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(100,149,237, 1)',
     width: '100%',
     height: 80,
-  },
-  piechart: {
-    padding: 20,
-    // flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(100,149,237, 0.2)',
-    width: '100%',
-    height: 200,
   },
   charities: {
     padding: 20,
