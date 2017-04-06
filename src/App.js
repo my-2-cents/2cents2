@@ -50,28 +50,46 @@ export default class App extends React.Component {
 
   onLoginSubmit(renderAfterLogin) {
     console.log('inside login submit:', this.state)
-    return fetch('http://localhost:3000/test', {
-      method: 'GET',
+    return fetch('http://localhost:3000/user/login', {
+      method: 'POST',
       headers: {
         'content-type': 'application/JSON'
-      }
+      },
+      body: JSON.stringify({
+        loginUsername: this.state.loginUsername,
+        loginPassword: this.state.loginPassword
+      })
     })
     .then(r => r.json())
     .then( (data) => {
       console.log('data:', data)
+      this.setState({
+        userInfo: data
+      }, () => {
+        console.log(data)
+      })
     })
     .then(() => {
       renderAfterLogin('Nav')
+    })
+    .catch((err) => {
+      console.log(err)
+      return err;
     })
   }
 
   onSignupSubmit(renderAfterSignup) {
     console.log('inside signup submit:', this.state)
-    return fetch('http://localhost:3000/test', {
-      method: 'GET',
+    return fetch('http://localhost:3000/user/signup', {
+      method: 'POST',
       headers: {
         'content-type': 'application/JSON'
-      }
+      },
+      body: JSON.stringify({
+        signupUsername: this.state.signupUsername,
+        signupPassword: this.state.signupPassword,
+        signupConfirm: this.state.signupConfirm
+      })
     })
     .then(r => r.json())
     .then( (data) => {
@@ -86,7 +104,7 @@ export default class App extends React.Component {
     return (
       <Navigator
         initialRoute={{
-          id: 'Nav'
+          id: 'Splash'
         }}
         renderScene={(route, navigator) => {
             _navigator = navigator;
