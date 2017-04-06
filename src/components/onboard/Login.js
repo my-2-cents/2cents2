@@ -17,30 +17,20 @@ export default class Login extends React.Component {
     }
   }
 
-  goBack() {
-    this.props.navigator.pop();
-  };
-
-  goForward() {
-    this.props.navigator.push({
-      id: 'Nav'
-    });
-  };
-
   renderAfterLogin(scene) {
     this.props.navigator.push({
       id: scene,
     })
   }
 
-  handleLoginSubmit() {
-    console.log(this.state)
+  goBack() {
+    this.props.navigator.pop();
   }
 
   render() {
     return(
       <KeyboardAvoidingView behavior={this.state.behavior} style={styles.container}>
-        <TouchableHighlight onPress={() => this.props.navigator.pop()} style={styles.backArrow}>
+        <TouchableHighlight onPress={this.goBack.bind(this)} style={styles.backArrow}>
           <Text>Go back</Text>
         </TouchableHighlight>
         <Text style={styles.largeWords}>

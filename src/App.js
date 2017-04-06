@@ -30,28 +30,63 @@ export default class App extends React.Component {
     })
   }
 
+  trackSignupUsername(text) {
+    this.setState({
+      signupUsername: text
+    })
+  };
+
+  trackSignupPassword(text) {
+    this.setState({
+      signupPassword: text
+    })
+  }
+
+  trackSignupConfirm(text) {
+    this.setState({
+      signupConfirm: text
+    })
+  }
+
   onLoginSubmit(renderAfterLogin) {
-    // console.log('inside login submit:', this.state)
-    // return fetch('http://localhost:3000/test', {
-    //   method: 'GET',
-    //   headers: {
-    //     'content-type': 'application/JSON'
-    //   }
-    // })
-    // .then(r => r.json())
-    // .then( (data) => {
-    //   console.log('data:', data)
-    // })
-    // .then(() => {
-    // })
-    renderAfterLogin('Nav')
+    console.log('inside login submit:', this.state)
+    return fetch('http://localhost:3000/test', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/JSON'
+      }
+    })
+    .then(r => r.json())
+    .then( (data) => {
+      console.log('data:', data)
+    })
+    .then(() => {
+      renderAfterLogin('Nav')
+    })
+  }
+
+  onSignupSubmit(renderAfterSignup) {
+    console.log('inside signup submit:', this.state)
+    return fetch('http://localhost:3000/test', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/JSON'
+      }
+    })
+    .then(r => r.json())
+    .then( (data) => {
+      console.log('data:', data)
+    })
+    .then(() => {
+      renderAfterSignup('Nav')
+    })
   }
 
   render() {
     return (
       <Navigator
         initialRoute={{
-          id: 'Splash'
+          id: 'Nav'
         }}
         renderScene={(route, navigator) => {
             _navigator = navigator;
@@ -79,6 +114,10 @@ export default class App extends React.Component {
                 <Signup
                   navigator={navigator}
                   title={'Signup'}
+                  trackSignupUsername={this.trackSignupUsername.bind(this)}
+                  trackSignupPassword={this.trackSignupPassword.bind(this)}
+                  trackSignupConfirm={this.trackSignupConfirm.bind(this)}
+                  onSignupSubmit={this.onSignupSubmit.bind(this)}
                 />
               )
             }
