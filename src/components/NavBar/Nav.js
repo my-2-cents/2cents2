@@ -23,7 +23,8 @@ export default class Nav extends React.Component {
       aclu: true,
       sliceColor: ['#F44336', '#2196F3', '#FFEB3B'],
       sliderOneValue: [33, 66],
-      value: 50
+      value: 50,
+      disabled: false
     };
   }
 
@@ -52,7 +53,7 @@ export default class Nav extends React.Component {
   }
 
   updatePP() {
-    console.log(this.state.series)
+    let bool = this.state.pp;
     if (this.state.pp === true) {
       if (this.state.series.length === 1) {
         return;
@@ -62,7 +63,6 @@ export default class Nav extends React.Component {
         sliceColor: this.state.sliceColor.slice(1)
       }, () => {
         let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
-        console.log(this.state.series[0], sum)
         this.setSliderValue((this.state.series[0]/sum) * 100)
       });
     } else {
@@ -76,11 +76,9 @@ export default class Nav extends React.Component {
         sliceColor: secSli,
       }, () => {
         let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
-        console.log(this.state.series[0], sum)
         this.setSliderValue((this.state.series[0]/sum) * 100)
       });
     }
-    let bool = this.state.pp;
     this.setState({
       pp: !bool
     });
@@ -89,14 +87,20 @@ export default class Nav extends React.Component {
   updateUNICEF() {
     if (this.state.unicef === true) {
       if (this.state.series.length === 1) {
+        let disBool = this.state.disabled
+        this.setState({
+          disabled: !disBool
+        })
         return;
       }
       if (this.state.pp === true && this.state.aclu === true) {
         let secSer = [this.state.series[0], this.state.series[2]];
         let secSli = [this.state.sliceColor[0], this.state.sliceColor[2]];
+        let disBool = this.state.disabled
         this.setState({
           series: secSer,
-          sliceColor: secSli
+          sliceColor: secSli,
+          disabled: !disBool
         }, () => {
           let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
           console.log(this.state.series[0], sum)
@@ -107,9 +111,11 @@ export default class Nav extends React.Component {
         let secSli = this.state.sliceColor;
         secSer.pop();
         secSli.pop();
+        let disBool = this.state.disabled
         this.setState({
           series: secSer,
-          sliceColor: secSli
+          sliceColor: secSli,
+          disabled: !disBool
         }, () => {
           let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
           console.log(this.state.series[0], sum)
@@ -172,12 +178,13 @@ export default class Nav extends React.Component {
   }
 
   updateACLU() {
+    let secSer = this.state.series;
+    let secSli = this.state.sliceColor;
+    let bool = this.state.aclu;
     if (this.state.aclu === true) {
       if (this.state.series.length === 1) {
         return;
       }
-      let secSer = this.state.series;
-      let secSli = this.state.sliceColor;
       secSer.pop();
       secSli.pop();
       this.setState({
@@ -189,8 +196,6 @@ export default class Nav extends React.Component {
         this.setSliderValue((this.state.series[0]/sum) * 100)
       });
     } else {
-      let secSer = this.state.series;
-      let secSli = this.state.sliceColor;
       let sum = secSer.reduce((total, n) => {return total + n}, 0)
       secSer.push(sum/secSer.length);
       secSli.push('#FFEB3B');
@@ -199,7 +204,6 @@ export default class Nav extends React.Component {
         sliceColor: secSli
       });
     }
-    let bool = this.state.aclu;
     this.setState({
       aclu: !bool
     });
@@ -219,7 +223,6 @@ export default class Nav extends React.Component {
   }
 
   setSliderValue(n) {
-    console.log(n)
     this.setState({
       value: n
     })

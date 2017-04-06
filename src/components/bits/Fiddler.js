@@ -20,7 +20,6 @@ export default class Fiddler extends React.Component {
     }
   }
 
-
   renderSlider() {
     if (this.props.series.length === 3) {
       return(
