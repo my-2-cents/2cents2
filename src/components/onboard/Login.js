@@ -40,6 +40,8 @@ export default class Login extends React.Component {
           <TextInput style={styles.enterInfo}
             value={this.state.loginUsername}
             onChangeText={this.props.trackLoginUsername.bind(this)}
+            autoCorrect={false}
+            autoCapitalize={'none'}
           />
         </KeyboardAvoidingView>
         <Text style={styles.largeWords}>
@@ -48,6 +50,8 @@ export default class Login extends React.Component {
         <TextInput style={styles.enterInfo}
           value={this.state.loginPassword}
           onChangeText={this.props.trackLoginPassword.bind(this)}
+          autoCorrect={false}
+          autoCapitalize={'none'}
         />
         <TouchableHighlight onPress={() => {this.props.onLoginSubmit(this.renderAfterLogin.bind(this))}}>
           <Text style={styles.goWords}>

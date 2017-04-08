@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Navigator } from 'react-native';
+import { Alert, StyleSheet, Text, View, Navigator } from 'react-native';
 
 import Splash from './components/onboard/Splash';
 import Login from './components/onboard/Login';
@@ -49,7 +49,6 @@ export default class App extends React.Component {
   }
 
   onLoginSubmit(renderAfterLogin) {
-    console.log('inside login submit:', this.state)
     return fetch('http://localhost:3000/user/login', {
       method: 'POST',
       headers: {
@@ -62,15 +61,17 @@ export default class App extends React.Component {
     })
     .then(r => r.json())
     .then( (data) => {
-      console.log('data:', data)
-      this.setState({
-        userInfo: data
-      }, () => {
-        console.log(data)
-      })
-    })
-    .then(() => {
-      renderAfterLogin('Nav')
+      if (data.failed) {
+        Alert.alert(
+          'Whoops!',
+          `${data.failed}`,
+          [
+            {text: 'Try Again', onPress: () => console.log('try again pressed'), style: 'default'}
+          ]
+        )
+      } else {
+        renderAfterLogin('Nav')
+      }
     })
     .catch((err) => {
       console.log(err)
@@ -93,10 +94,21 @@ export default class App extends React.Component {
     })
     .then(r => r.json())
     .then( (data) => {
-      console.log('data:', data)
+      if (data.failed) {
+        Alert.alert(
+          'Whoops!',
+          'Passwords do not match.',
+          [
+            {text: 'Try Again', onPress: () => console.log('try again pressed'), style: 'default'}
+          ]
+        )
+      } else {
+        renderAfterSignup('Nav')
+      }
     })
-    .then(() => {
-      renderAfterSignup('Nav')
+    .catch((err) => {
+      console.log(err);
+      return err;
     })
   }
 
