@@ -16,7 +16,7 @@ export default class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'Charities',
+      selected: 'Profile',
       series: [33, 33, 33],
       pp: true,
       unicef: true,
