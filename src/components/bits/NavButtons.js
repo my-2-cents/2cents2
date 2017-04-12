@@ -4,29 +4,35 @@ import {
   StyleSheet,
   View,
   Text,
-  Button,
+  TouchableHighlight,
   Image
   } from 'react-native';
 
-export class NavButtons extends React.Component {
+export class NavTouchableHighlights extends React.Component {
 
-  sayStuff() {
-    console.log(()=> {'heyo'});
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      profileSelected: 'changePassword'
+    }
   }
 
-  navPress() {
-    this.setState = {
-      isNavClicked: true,
+  renderProfileComponents() {
+    if (this.state.profileSelected === 'changePassword') {
+      return <ChangePassword />
+    } else if (this.state.profileSelected === 'monthlyCap') {
+      return <MonthlyCap />
     }
   }
 
   render() {
     return (
       <View>
-        <Button title='Change Password' onPress={this.sayStuff.bind(this)}>Change Password</Button>
-        <Button title='Monthly Cap' onPress={this.sayStuff.bind(this)}>Monthly Cap</Button>
-        <Button title='Bank Info' onPress={this.sayStuff.bind(this)}>Bank Info</Button>
-        <Button title='Notifications' onPress={this.sayStuff.bind(this)}>Notifications</Button>
+        <TouchableHighlight title='Change Password' onPress={this.sayStuff.bind(this)}>Change Password</TouchableHighlight>
+        <TouchableHighlight title='Monthly Cap' onPress={this.sayStuff.bind(this)}>Monthly Cap</TouchableHighlight>
+        <TouchableHighlight title='Bank Info' onPress={this.sayStuff.bind(this)}>Bank Info</TouchableHighlight>
+        <TouchableHighlight title='Notifications' onPress={this.sayStuff.bind(this)}>Notifications</TouchableHighlight>
       </View>
     );
   }

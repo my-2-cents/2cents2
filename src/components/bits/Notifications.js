@@ -4,13 +4,21 @@ import {
   StyleSheet,
   View,
   Text,
+  TouchableHighlight,
   Image } from 'react-native';
 
 export class Notifications extends React.Component {
   render() {
     return (
       <View>
-        <Text>Notifications</Text>
+        <TouchableHighlight onPress={this.props.goBack}>
+          <Text>
+            go back!
+          </Text>
+        </TouchableHighlight>
+        <View>
+          <Text>Notifications</Text>
+        </View>
       </View>
     );
   }

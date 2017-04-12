@@ -34,29 +34,34 @@ export default class Nav extends React.Component {
     this.setState({
       selected: 'Home'
     });
+
   }
 
   onCharitiesPress() {
     this.setState({
       selected: 'Charities'
     });
+
   }
 
   onActivityPress() {
     this.setState({
       selected: 'Activity'
     });
+
   }
 
   onProfilePress() {
     this.setState({
       selected: 'Profile'
     });
+
   }
 
   updatePP() {
     let bool = this.state.pp;
     if (this.state.pp === true) {
+      console.log('length if:', this.state.series.length)
       if (this.state.series.length === 1) {
         return;
       }
@@ -89,20 +94,14 @@ export default class Nav extends React.Component {
   updateUNICEF() {
     if (this.state.unicef === true) {
       if (this.state.series.length === 1) {
-        let disBool = this.state.disabled
-        this.setState({
-          disabled: !disBool
-        })
         return;
       }
       if (this.state.pp === true && this.state.aclu === true) {
         let secSer = [this.state.series[0], this.state.series[2]];
         let secSli = [this.state.sliceColor[0], this.state.sliceColor[2]];
-        let disBool = this.state.disabled
         this.setState({
           series: secSer,
           sliceColor: secSli,
-          disabled: !disBool
         }, () => {
           let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
           console.log(this.state.series[0], sum)
@@ -113,11 +112,9 @@ export default class Nav extends React.Component {
         let secSli = this.state.sliceColor;
         secSer.pop();
         secSli.pop();
-        let disBool = this.state.disabled
         this.setState({
           series: secSer,
           sliceColor: secSli,
-          disabled: !disBool
         }, () => {
           let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
           console.log(this.state.series[0], sum)
@@ -184,9 +181,6 @@ export default class Nav extends React.Component {
     let secSli = this.state.sliceColor;
     let bool = this.state.aclu;
     if (this.state.aclu === true) {
-      if (this.state.series.length === 1) {
-        return;
-      }
       secSer.pop();
       secSli.pop();
       this.setState({
@@ -250,6 +244,7 @@ export default class Nav extends React.Component {
           onHomePress={this.onHomePress.bind(this)}
           value={this.state.value}
           setSliderValue={this.setSliderValue.bind(this)}
+          disabled={true}
         />
       );
     } else if (this.state.selected === 'Activity') {

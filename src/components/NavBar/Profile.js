@@ -31,60 +31,95 @@ export default class Profile extends React.Component {
     super();
       this.state = {
         picked: 'null',
-        isNavClicked: false,
-        showButtons: 'showButtons'
+        profileSelected: 'default',
+        showButtons: 'showButtons',
         }
     };
 
   // Check to see if navigation buttons have been clicked
-  navClicked(isNavClicked) {
-    if (!isNavClicked) {
+  renderProfileSelected() {
+    if (this.state.profileSelected === 'default') {
       return (
         <View style={styles.headerBar}>
           <ProfilePic />
           <UserName />
-          <NavButtons />
+          <TouchableHighlight onPress={this.handleMonthlyCap.bind(this)}>
+            <Text>
+              monthlycap!
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.handleBankInfo.bind(this)}>
+            <Text>
+              bankInfo!
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.handleChangePassword.bind(this)}>
+            <Text>
+              changePassword!
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.handleNotifications.bind(this)}>
+            <Text>
+              notifications!
+            </Text>
+          </TouchableHighlight>
         </View>
-    )}
+      )
+    } else if (this.state.profileSelected === 'monthlyCap') {
+      return (
+        <MonthlyCap
+          goBack={this.goBack.bind(this)}
+        />
+      )
+    } else if (this.state.profileSelected === 'bankInfo') {
+      return (
+        <BankInfo
+          goBack={this.goBack.bind(this)}
+        />
+      )
+    } else if (this.state.profileSelected === 'notifications') {
+      return (
+        <Notifications
+          goBack={this.goBack.bind(this)}
+        />
+      )
+    } else if (this.state.profileSelected === 'changePassword') {
+      return (
+        <ChangePassword
+          goBack={this.goBack.bind(this)}
+        />
+      )
+    }
+  }
+
+  goBack() {
+    this.setState({
+      profileSelected: 'default'
+    })
   }
 
   handleChangePassword() {
     this.setState({
-      isNavClicked: true,
+      profileSelected: 'changePassword',
     });
-    console.log(()=> {this.state.isNavClicked});
-    return (
-      <ChangePassword />
-      )
   }
 
   handleMonthlyCap() {
     this.setState({
-      isNavClicked: true,
+      profileSelected: 'monthlyCap',
     });
-    console.log(()=> {this.state.isNavClicked});
-    return (
-      <MonthlyCap />
-      )
   }
 
   handleBankInfo() {
     this.setState({
-      isNavClicked: true,
+      profileSelected: 'bankInfo',
     });
-    console.log(()=> {this.state.isNavClicked});
-    return (
-      <BankInfo />
-      )
   }
 
   handleNotifications() {
     this.setState({
-      isNavClicked: true,
+      profileSelected: 'notifications',
     });
-    return (
-      <Notifications />
-      )
   }
 
   showStyle() {
@@ -103,12 +138,10 @@ export default class Profile extends React.Component {
 
   render() {
     return(
-        <View style={styles.container}>
-            {this.navClicked(this.state.isNavClicked)}
-            {this.showStyle()}
-            {this.showState()}
+      <View style={styles.container}>
+        {this.renderProfileSelected()}
         <View style={styles.footerBox}></View>
-       </View>
+      </View>
     )
   }
 }
@@ -141,6 +174,10 @@ const styles = StyleSheet.create({
   box: {
     height: 400,
     backgroundColor: '#fafafa',
-  }
+  },
+  hidden: {
+    height: 0,
+  },
+
 
 })

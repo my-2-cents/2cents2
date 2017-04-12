@@ -4,13 +4,21 @@ import {
   StyleSheet,
   View,
   Text,
+  TouchableHighlight,
   Image } from 'react-native';
 
 export class BankInfo extends React.Component {
   render() {
     return (
       <View>
-        <Text>Bank Info</Text>
+        <TouchableHighlight onPress={this.props.goBack}>
+          <Text>
+            go back!
+          </Text>
+        </TouchableHighlight>
+        <View>
+          <Text>Bank Info</Text>
+        </View>
       </View>
     );
   }

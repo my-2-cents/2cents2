@@ -5,6 +5,7 @@ import {
   View,
   Text,
   Button,
+  TouchableHighlight,
   Image } from 'react-native';
 
 export class MonthlyCap extends React.Component {
@@ -35,6 +36,11 @@ export class MonthlyCap extends React.Component {
   render() {
     return (
       <View>
+          <TouchableHighlight onPress={this.props.goBack}>
+            <Text>
+              go back!
+            </Text>
+          </TouchableHighlight>
 
         <Text>
           Monthly Cap
