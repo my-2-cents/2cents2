@@ -10,10 +10,10 @@ export class TodaysDate extends React.Component {
   render() {
     return (
       <View style={styles.outerDate}>
-        <Text style={styles.innderDate}>
+        <Text style={styles.innerDate}>
           Wednesday
         </Text>
-        <Text style={styles.innderDate}>
+        <Text style={styles.innerDate}>
           3/22/2017
         </Text>
       </View>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-  innderDate: {
+  innerDate: {
     justifyContent: 'center',
     color: '#fafafa'
   }
