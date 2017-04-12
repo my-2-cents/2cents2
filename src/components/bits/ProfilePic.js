@@ -11,7 +11,7 @@ export class ProfilePic extends React.Component {
     return (
       <View>
         <Image
-          style= {{ height:150, width: 150, borderRadius: 75 }}
+          style= {{ height:50, width: 50, borderRadius: 25 }}
           source={{uri: 'http://www.lucasfan.com/raidersofthelostark/indy.jpg'}}
         />
       </View>

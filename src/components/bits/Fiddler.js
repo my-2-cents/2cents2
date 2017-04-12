@@ -16,8 +16,30 @@ export default class Fiddler extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: 0.2
+      disabled: false
     }
+  }
+
+  handleSlider() {
+    console.log('checking slider')
+    if (this.props.series.length === 1) {
+      this.setState({
+        disabled: true
+      }, () => {
+        console.log('set to true', this.state.disabled)
+      })
+    } else {
+      this.setState({
+        disabled: false
+      }, () => {
+        console.log('set to false', this.state.disabled)
+      })
+    }
+  }
+
+  componentWillReceiveProps() {
+    console.log('it changed', this.props.series.length)
+    this.handleSlider();
   }
 
   renderSlider() {
@@ -28,7 +50,7 @@ export default class Fiddler extends React.Component {
             values={this.props.sliderOneValue}
             sliderLength={280}
             min={1}
-            max={100}
+            max={98}
             onValuesChange={this.props.adjustThirds}
             maximumTrackTintColor={'red'}
           />
@@ -42,11 +64,12 @@ export default class Fiddler extends React.Component {
             trackStyle={styles.trackStyle}
             thumbStyle={styles.thumbStyle}
             minimumValue={1}
-            maximumValue={99}
+            maximumValue={98}
             value={this.props.value}
             onValueChange={this.props.adjustHalves}
             minimumTrackTintColor={this.props.sliceColor[0]}
             maximumTrackTintColor={this.props.sliceColor[1]}
+            disabled={this.state.disabled}
           />
         </View>
       )

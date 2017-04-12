@@ -5,22 +5,10 @@ import {
   View,
   Text,
   Button,
+  TouchableHighlight,
   Image } from 'react-native';
 
 export class MonthlyCap extends React.Component {
-
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     plaidVerification: {}, // bank accounts, address, full name, etc.
-  //     cap: 0, // User's monthly cap
-  //     currentCharities: [], // User's selected charities
-  //     userProfilePic: '', // is this a uri ref? Where is this stored?
-  //     percentOfCap: 0, // this will help render the pie chart of monthly giving
-  //     notifications: {}, // receive push notifications? Email updates?
-  //   }
-  // }
-
 
   constructor(props) {
     super(props)
@@ -31,31 +19,48 @@ export class MonthlyCap extends React.Component {
 
   handleIncreaseCap = ()=> {
     let cap = this.state.cap;
+<<<<<<< HEAD
     this.setState(prevState => ({
       cap: prevState.cap + 1})
     );
+=======
+    this.setState ({
+      cap: cap +1
+    });
+>>>>>>> 35b3425d07680e8d3740efcd0c3b2c3a3c35664a
   }
 
   handleDecreaseCap = ()=> {
     let cap = this.state.cap;
     if (this.state.cap > 0) {
+<<<<<<< HEAD
       this.setState(prevState => ({
         cap: prevState.cap - 1})
       );
+=======
+      this.setState ({
+        cap: cap -1
+      });
+>>>>>>> 35b3425d07680e8d3740efcd0c3b2c3a3c35664a
     }
   }
 
   render() {
     return (
       <View>
+          <TouchableHighlight onPress={this.props.goBack}>
+            <Text>
+              go back!
+            </Text>
+          </TouchableHighlight>
 
-        <Text style={{fontFamily: 'Marker Felt'}}>
+        <Text>
           Monthly Cap
         </Text>
 
         <View style={styles.counter}>
           <View>
-            <Text style={{fontFamily: 'Marker Felt', fontSize: 40}}>
+            <Text style={{fontSize: 40}}>
               ${this.state.cap}
             </Text>
           </View>
