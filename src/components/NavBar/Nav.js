@@ -12,8 +12,8 @@ import Charities from './Charities';
 import Activity from './Activity';
 import Profile from './Profile';
 
-export default class Nav extends React.Component {
 
+export default class Nav extends React.Component {
 
   constructor(props) {
     super(props);
@@ -232,11 +232,7 @@ export default class Nav extends React.Component {
 
   renderNavContent() {
     if (this.state.selected === 'Home') {
-
-      return(
-        <Home username={this.state.username}/>
-      )
-
+      return <Home />;
     } else if (this.state.selected === 'Charities') {
       return (
         <Charities
@@ -262,6 +258,7 @@ export default class Nav extends React.Component {
       return <Profile />;
     }
   }
+
 
   render() {
     return (
@@ -294,6 +291,7 @@ export default class Nav extends React.Component {
           >
             <Text>activity</Text>
           </TouchableHighlight>
+
         </View>
       </View>
     );
