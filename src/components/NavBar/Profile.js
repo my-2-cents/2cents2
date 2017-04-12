@@ -41,7 +41,10 @@ export default class Profile extends React.Component {
     if (this.state.profileSelected === 'default') {
       return (
         <View style={styles.headerBar}>
-          <ProfilePic />
+          <Text>
+            Profile
+          </Text>
+          <ProfilePic style={styles.profilePic} />
           <UserName />
           <TouchableHighlight onPress={this.handleMonthlyCap.bind(this)}>
             <Text>
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     // backgroundColor: 'rgba(100,149,237, 1)',
-    backgroundColor: '#fff',
+    backgroundColor: 'lightgray',
     width: '100%',
     height: 10,
   },

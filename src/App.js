@@ -100,6 +100,26 @@ export default class App extends React.Component {
     })
   }
 
+  onNewCapSubmit(renderAfterCapUpdate) {
+  console.log('inside newCap submit:', this.state)
+  return fetch('http://localhost:3000/user/cap', {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/JSON'
+    },
+    body: JSON.stringify({
+      cap: this.state.cap
+    })
+  })
+  .then(r => r.json())
+  .then( (data) => {
+    console.log('data:', data)
+  })
+  .then(() => {
+    renderAfterCapUpdate('Monthly Cap')
+  })
+}
+
   render() {
     return (
       <Navigator
@@ -147,6 +167,12 @@ export default class App extends React.Component {
                     title={'Nav'}
                   />
                 </View>
+                )
+              }
+            if (route.id === 'Cap') {
+              return (
+                <MonthlyCap
+                />
               )
             }
           }
