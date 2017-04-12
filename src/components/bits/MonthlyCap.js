@@ -19,29 +19,23 @@ export class MonthlyCap extends React.Component {
 
   handleIncreaseCap = ()=> {
     let cap = this.state.cap;
-<<<<<<< HEAD
     this.setState(prevState => ({
       cap: prevState.cap + 1})
     );
-=======
     this.setState ({
       cap: cap +1
     });
->>>>>>> 35b3425d07680e8d3740efcd0c3b2c3a3c35664a
   }
 
   handleDecreaseCap = ()=> {
     let cap = this.state.cap;
     if (this.state.cap > 0) {
-<<<<<<< HEAD
       this.setState(prevState => ({
         cap: prevState.cap - 1})
       );
-=======
       this.setState ({
         cap: cap -1
       });
->>>>>>> 35b3425d07680e8d3740efcd0c3b2c3a3c35664a
     }
   }
 
@@ -53,7 +47,6 @@ export class MonthlyCap extends React.Component {
               go back!
             </Text>
           </TouchableHighlight>
-
         <Text>
           Monthly Cap
         </Text>
@@ -68,6 +61,9 @@ export class MonthlyCap extends React.Component {
             <Button title="Boost It!" color="black" onPress={this.handleIncreaseCap}/>
             <Button title="Decrease It" color="black" onPress={this.handleDecreaseCap}/>
           </View>
+          <TouchableHighlight onPress={this.props.saveCap} style={styles.save}>
+            <Text>Save New Cap</Text>
+          </TouchableHighlight>
         </View>
 
       </View>
@@ -83,5 +79,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: 'rgba(100,149,237, 1)',
     width: '100%',
-  }
+  },
+  save: {
+    padding: 20,
+    // flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(100,34,86, 1)',
+  },
+
 });
