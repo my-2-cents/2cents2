@@ -21,6 +21,7 @@ export default class Home extends React.Component {
    return(
      <View style={styles.container}>
          <View style={styles.headerBar}>
+            <Text>Hello, </Text>
            <UserName
             username={this.props.username}
            />
@@ -40,7 +41,7 @@ export default class Home extends React.Component {
 
 const styles = StyleSheet.create({
  container: {
-   backgroundColor: '#fff',
+   backgroundColor: '#eee',
    justifyContent: 'center',
    alignItems: 'center',
  },
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
    // flex: 1,
    flexDirection: 'row',
    justifyContent: 'space-between',
-   backgroundColor: '#ddd',
+   backgroundColor: '#eee',
    width: '100%',
    height: 80,
  },
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
    height: 170,
  },
  feed: {
-   backgroundColor: '#ccc',
+   backgroundColor: '#ddd',
    width: '100%',
    height: 600,
  },

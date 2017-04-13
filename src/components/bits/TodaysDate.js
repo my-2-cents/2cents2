@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
   },
   innerDate: {
     justifyContent: 'center',
-    color: '#fafafa'
+    color: '#777'
   }
 });
