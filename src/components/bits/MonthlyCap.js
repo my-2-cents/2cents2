@@ -41,14 +41,14 @@ export class MonthlyCap extends React.Component {
 
   render() {
     return (
-      <View>
-          <TouchableHighlight onPress={this.props.goBack}>
-            <Text>
-              go back!
+      <View style={styles.container}>
+          <TouchableHighlight onPress={this.props.goBack} style={styles.backArrow}>
+            <Text style={styles.arrowText}>
+              BACK
             </Text>
           </TouchableHighlight>
-        <Text>
-          Monthly Cap
+        <Text style={styles.capText}>
+          Use the buttons below to adjust your monthly donation cap. Your monthly donation will never exceed the amount you specify.
         </Text>
 
         <View style={styles.counter}>
@@ -58,13 +58,13 @@ export class MonthlyCap extends React.Component {
             </Text>
           </View>
           <View>
-            <Button title="Boost It!" color="black" onPress={this.handleIncreaseCap}/>
-            <Button title="Decrease It" color="black" onPress={this.handleDecreaseCap}/>
+            <Button title="+" color="black" onPress={this.handleIncreaseCap}/>
+            <Button title="-" color="black" onPress={this.handleDecreaseCap}/>
           </View>
-          <TouchableHighlight onPress={this.props.saveCap} style={styles.save}>
-            <Text>Save New Cap</Text>
-          </TouchableHighlight>
         </View>
+          <TouchableHighlight onPress={this.props.saveCap} style={styles.save}>
+            <Text>SAVE</Text>
+          </TouchableHighlight>
 
       </View>
     );
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(100,149,237, 1)',
+    backgroundColor: '#eee',
     width: '100%',
   },
   save: {
@@ -85,7 +85,39 @@ const styles = StyleSheet.create({
     // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(100,34,86, 1)',
+    justifyContent: 'center',
+    backgroundColor: '#68DEA8',
+    borderRadius: 20,
+    height: 50,
+    width: 200,
+    marginTop: 40
   },
-
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fafafa'
+  },
+  backArrow: {
+    position: 'absolute',
+    top: 25,
+    left: 25,
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#68DEA8',
+    height: 30,
+    width: 50,
+    borderRadius: 20
+  },
+  arrowText: {
+    color: '#fafafa',
+    fontSize: 12,
+    textAlign: 'center',
+    alignSelf: 'center',
+  },
+  capText: {
+    textAlign: 'center',
+    width: '80%',
+    marginBottom: 40
+  }
 });

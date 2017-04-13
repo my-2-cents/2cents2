@@ -1,6 +1,6 @@
-import React from 'react';
-import MultiSlider from 'react-native-multi-slider';
-import Slider from 'react-native-slider';
+import React from "react";
+import MultiSlider from "react-native-multi-slider";
+import Slider from "react-native-slider";
 import {
   ScrollView,
   StyleSheet,
@@ -9,42 +9,47 @@ import {
   Image,
   Label,
   Input
-} from 'react-native';
+} from "react-native";
 
 export default class Fiddler extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       disabled: false
-    }
+    };
   }
 
   handleSlider() {
-    console.log('checking slider')
+    console.log("checking slider");
     if (this.props.series.length === 1) {
-      this.setState({
-        disabled: true
-      }, () => {
-        console.log('set to true', this.state.disabled)
-      })
+      this.setState(
+        {
+          disabled: true
+        },
+        () => {
+          console.log("set to true", this.state.disabled);
+        }
+      );
     } else {
-      this.setState({
-        disabled: false
-      }, () => {
-        console.log('set to false', this.state.disabled)
-      })
+      this.setState(
+        {
+          disabled: false
+        },
+        () => {
+          console.log("set to false", this.state.disabled);
+        }
+      );
     }
   }
 
   componentWillReceiveProps() {
-    console.log('it changed', this.props.series.length)
+    console.log("it changed", this.props.series.length);
     this.handleSlider();
   }
 
   renderSlider() {
     if (this.props.series.length === 3) {
-      return(
+      return (
         <View>
           <MultiSlider
             values={this.props.sliderOneValue}
@@ -52,12 +57,12 @@ export default class Fiddler extends React.Component {
             min={1}
             max={98}
             onValuesChange={this.props.adjustThirds}
-            maximumTrackTintColor={'red'}
+            maximumTrackTintColor={"red"}
           />
         </View>
-      )
+      );
     } else {
-      return(
+      return (
         <View>
           <Slider
             style={styles.slider}
@@ -72,7 +77,7 @@ export default class Fiddler extends React.Component {
             disabled={this.state.disabled}
           />
         </View>
-      )
+      );
     }
   }
 
@@ -81,13 +86,13 @@ export default class Fiddler extends React.Component {
       <View>
         {this.renderSlider()}
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   slider: {
-    width: 280,
+    width: 280
   },
   trackStyle: {
     height: 8,
@@ -95,11 +100,11 @@ const styles = StyleSheet.create({
   },
   thumbStyle: {
     top: 23,
-    height:30,
+    height: 30,
     width: 30,
     borderRadius: 15,
-    backgroundColor:'#E8E8E8',
+    backgroundColor: "#E8E8E8",
     borderWidth: 0.5,
-    borderColor: 'grey'
+    borderColor: "grey"
   }
 });
