@@ -53,6 +53,7 @@ export default class Login extends React.Component {
           onChangeText={this.props.trackLoginPassword.bind(this)}
           autoCorrect={false}
           autoCapitalize={'none'}
+          secureTextEntry={true}
         />
         <TouchableHighlight onPress={() => {this.props.onLoginSubmit(this.renderAfterLogin.bind(this))}} style={styles.goWords}>
           <Text>

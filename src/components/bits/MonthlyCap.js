@@ -57,7 +57,7 @@ export class MonthlyCap extends React.Component {
           onPress={this.props.onDoneMonthlyCapPress}
           style={styles.save}
         >
-          <Text style={styles.capText}>SAVE</Text>
+          <Text>SAVE</Text>
         </TouchableHighlight>
 
       </View>
@@ -109,11 +109,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: "center",
     alignSelf: "center"
-  },
-  capText: {
-    textAlign: "center",
-    width: "80%",
-    marginBottom: 40
   },
   headline: {
     textAlign: "center",
