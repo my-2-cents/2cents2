@@ -4,11 +4,11 @@ import { Alert, StyleSheet, Text, View, Navigator } from 'react-native';
 import Splash from './components/onboard/Splash';
 import Login from './components/onboard/Login';
 import Signup from './components/onboard/Signup';
-import Home from './components/navBar/Home';
-import Nav from './components/navBar/Nav';
-import Charities from './components/navBar/Charities';
-import Profile from './components/navBar/Profile';
-import Activity from './components/navBar/Activity';
+import Home from './components/NavBar/Home';
+import Nav from './components/NavBar/Nav';
+import Charities from './components/NavBar/Charities';
+import Profile from './components/NavBar/Profile';
+import Activity from './components/NavBar/Activity';
 
 export default class App extends React.Component {
 
@@ -55,8 +55,8 @@ export default class App extends React.Component {
         'content-type': 'application/JSON'
       },
       body: JSON.stringify({
-        loginUsername: this.state.loginUsername,
-        loginPassword: this.state.loginPassword
+        username: this.state.loginUsername,
+        password: this.state.loginPassword
       })
     })
     .then(r => r.json())
@@ -70,7 +70,17 @@ export default class App extends React.Component {
           ]
         )
       } else {
-        renderAfterLogin('Nav')
+        this.setState({
+          loginUsername: '',
+          loginPassword: '',
+          username: data.username,
+          monthlyCap: data.monthlyCap,
+          tempSeries: data.series,
+          user_id: data.user_id,
+          token: data.token
+        }, () => {
+          renderAfterLogin('Nav')
+        })
       }
     })
     .catch((err) => {
@@ -80,16 +90,17 @@ export default class App extends React.Component {
   }
 
   onSignupSubmit(renderAfterSignup) {
-    console.log('inside signup submit:', this.state)
     return fetch('http://localhost:3000/user/signup', {
       method: 'POST',
       headers: {
         'content-type': 'application/JSON'
       },
       body: JSON.stringify({
-        signupUsername: this.state.signupUsername,
-        signupPassword: this.state.signupPassword,
-        signupConfirm: this.state.signupConfirm
+        username: this.state.signupUsername,
+        password: this.state.signupPassword,
+        passwordConfirm: this.state.signupConfirm,
+        monthlyCap: 15,
+        series: [33, 33, 33]
       })
     })
     .then(r => r.json())
@@ -97,13 +108,24 @@ export default class App extends React.Component {
       if (data.failed) {
         Alert.alert(
           'Whoops!',
-          'Passwords do not match.',
+          `${data.failed}`,
           [
             {text: 'Try Again', onPress: () => console.log('try again pressed'), style: 'default'}
           ]
         )
       } else {
-        renderAfterSignup('Nav')
+        this.setState({
+          signupUsername: '',
+          signupPassword: '',
+          signupConfirm: '',
+          username: data.username,
+          monthlyCap: data.monthlyCap,
+          tempSeries: data.series,
+          user_id: data.user_id,
+          token: data.token
+        }, () => {
+          renderAfterSignup('Nav')
+        })
       }
     })
     .catch((err) => {
@@ -157,6 +179,11 @@ export default class App extends React.Component {
                   <Nav
                     navigator={navigator}
                     title={'Nav'}
+                    username={this.state.username}
+                    monthlyCap={this.state.monthlyCap}
+                    series={this.state.tempSeries}
+                    user_id={this.state.user_id}
+                    token={this.state.token}
                   />
                 </View>
               )

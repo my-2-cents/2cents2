@@ -4,49 +4,45 @@ import {
   Text,
   TouchableHighlight,
   View,
-  Navigator,
-  Image
+  Navigator
 } from 'react-native';
 
-export default class Splash extends React.Component {
+export default class LoginSignup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loggedInUser: null,
-      totalWorkouts: null,
       behavior: 'padding',
     }
   }
 
   onLoginPress(){
+    console.log('on login pressed')
     this.props.navigator.push({
       id: 'Login'
     });
   };
 
   onSignupPress() {
+    console.log('on signup pressed')
     this.props.navigator.push({
       id: 'Signup'
     })
   }
 
+  touch() {
+    console.log('touch!')
+  }
+
   render() {
     return(
       <View style={styles.container}>
-        <Image
-        source={require('../../../assets/icons/2centsText.png')}
-        style={styles.logoText}
-        ></Image>
-        <Image
-        source={require('../../../assets/icons/2centsBall.png')}
-        style={styles.logoIcon}
-        >
-        </Image>
+        <Text>LoginSignup</Text>
         <TouchableHighlight onPress={this.onLoginPress.bind(this)} style={styles.touch}>
-          <Text>LOGIN</Text>
+          <Text>Go To Login!</Text>
         </TouchableHighlight>
         <TouchableHighlight onPress={this.onSignupPress.bind(this)} style={styles.touch}>
-          <Text>SIGNUP</Text>
+          <Text>Go To Signup!</Text>
         </TouchableHighlight>
       </View>
     )
@@ -58,17 +54,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fafafa',
+    backgroundColor: '#fafafa'
   },
   touch: {
     height: 40,
-    width: 200,
-    marginBottom: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: '#68DEA8',
-    borderWidth: 0.8,
-    borderRadius: 20
+    width: 100,
+    backgroundColor: '#fadfad',
+    marginBottom: 20
   },
   largeWords: {
     fontSize: 20,
@@ -92,15 +84,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 25,
     left: 25,
-  },
-  logoIcon: {
-    height: 120,
-    width: 120,
-    marginBottom: 50
-  },
-  logoText: {
-    width: 200,
-    height: 50
   }
 })
-

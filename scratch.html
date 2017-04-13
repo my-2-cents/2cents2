@@ -1,0 +1,70 @@
+onChangePassword() {
+    this.setState({
+      picked: 'ChangePassword'
+    });
+  }
+
+  onMonthlyCap() {
+    this.setState({
+      picked: 'MonthlyCap'
+    });
+  }
+
+  onBankInfo() {
+    this.setState({
+      picked: 'BankInfo'
+    });
+  }
+
+  onNotifications() {
+    this.setState({
+      picked: 'Notifications'
+    });
+  }
+
+  goToPage() {
+    if (this.state.picked === 'ChangePassword') {
+      return <ChangePassword />;
+    } else if (this.state.picked === 'MonthlyCap') {
+      return <MonthlyCap />;
+    } else if (this.state.picked === 'BankInfo') {
+      return <BankInfo />;
+    } else if (this.state.picked === 'Notifications') {
+      return <Notifications />;
+    }
+  }
+
+          <Button style={styles.button}><Text>Monthly Cap</Text></Button>
+          <Button style={styles.button}><Text>Change Password</Text></Button>
+          <Button style={styles.button}><Text>Bank Info</Text></Button>
+          <Button style={styles.button}><Text>Notifications</Text></Button>
+
+closeSavedRestaurants() {
+    this.setState({
+      seeSaved: false,
+      emotionForm: true,
+    });
+  }
+
+
+
+<View>
+          <Button style={this.buttonStyle()} title='Change Password' onPress={this.handleChangePassword.bind(this)}></Button>
+          <Button style={this.state.showButtons} title='Monthly Cap' onPress={this.handleMonthlyCap.bind(this)}></Button>
+          <Button style={this.state.showButtons} title='Bank Info' onPress={this.handleBankInfo.bind(this)}></Button>
+          <Button style={this.state.showButtons} title='Notifications' onPress={this.handleNotifications.bind(this)}></Button>
+        </View>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

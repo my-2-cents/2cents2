@@ -4,7 +4,8 @@ import {
   Text,
   TouchableHighlight,
   View,
-  Navigator
+  Navigator,
+  Image
 } from 'react-native';
 
 import Home from './Home';
@@ -12,44 +13,75 @@ import Charities from './Charities';
 import Activity from './Activity';
 import Profile from './Profile';
 
+
 export default class Nav extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'Profile',
-      series: [33, 33, 33],
+      selected: 'Home',
       pp: true,
       unicef: true,
       aclu: true,
-      sliceColor: ['#F44336', '#2196F3', '#FFEB3B'],
+      sliceColor: ['#777', '#ccc', '#ddd'],
       sliderOneValue: [33, 66],
       value: 50,
       disabled: false
     };
   }
 
+  componentWillMount() {
+    this.setState({
+      series: this.props.series
+    })
+  }
+
   onHomePress() {
     this.setState({
       selected: 'Home'
     });
+
   }
 
   onCharitiesPress() {
     this.setState({
       selected: 'Charities'
     });
+
   }
 
   onActivityPress() {
     this.setState({
       selected: 'Activity'
     });
+
   }
 
   onProfilePress() {
     this.setState({
       selected: 'Profile'
     });
+
+  }
+
+  onDonePress() {
+    return fetch(`http://localhost:3000/user/${this.props.user_id}/series`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/JSON',
+        'authorization': `Bearer ${this.props.token}`
+      },
+      body: JSON.stringify({
+        series: this.state.series
+      })
+    })
+    .then((r => r.json()))
+    .then((data) => {
+      console.log('data dpneress', data)
+    })
+    this.setState({
+      selected: 'Home'
+    })
   }
 
   updatePP() {
@@ -59,24 +91,24 @@ export default class Nav extends React.Component {
         return;
       }
       this.setState({
-        series: this.state.series.slice(1),
+        series: this.props.series.slice(1),
         sliceColor: this.state.sliceColor.slice(1)
       }, () => {
-        let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
-        this.setSliderValue((this.state.series[0]/sum) * 100)
+        let sum = this.props.series.reduce((total, n) => {return total + n}, 0);
+        this.setSliderValue((this.props.series[0]/sum) * 100)
       });
     } else {
-      let secSer = this.state.series;
+      let secSer = this.props.series;
       let secSli = this.state.sliceColor;
       let sum = secSer.reduce((total, n) => {return total + n}, 0)
       secSer.unshift(sum/3);
-      secSli.unshift('#F44336');
+      secSli.unshift('#777');
       this.setState({
         series: secSer,
         sliceColor: secSli,
       }, () => {
-        let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
-        this.setSliderValue((this.state.series[0]/sum) * 100)
+        let sum = this.props.series.reduce((total, n) => {return total + n}, 0);
+        this.setSliderValue((this.props.series[0]/sum) * 100)
       });
     }
     this.setState({
@@ -87,64 +119,52 @@ export default class Nav extends React.Component {
   updateUNICEF() {
     if (this.state.unicef === true) {
       if (this.state.series.length === 1) {
-        let disBool = this.state.disabled
-        this.setState({
-          disabled: !disBool
-        })
         return;
       }
       if (this.state.pp === true && this.state.aclu === true) {
-        let secSer = [this.state.series[0], this.state.series[2]];
+        let secSer = [this.props.series[0], this.props.series[2]];
         let secSli = [this.state.sliceColor[0], this.state.sliceColor[2]];
-        let disBool = this.state.disabled
         this.setState({
           series: secSer,
           sliceColor: secSli,
-          disabled: !disBool
         }, () => {
-          let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
-          console.log(this.state.series[0], sum)
-          this.setSliderValue((this.state.series[0]/sum) * 100)
+          let sum = this.props.series.reduce((total, n) => {return total + n}, 0);
+          this.setSliderValue((this.props.series[0]/sum) * 100)
         });
       } else if (this.state.pp === true) {
-        let secSer = this.state.series;
+        let secSer = this.props.series;
         let secSli = this.state.sliceColor;
         secSer.pop();
         secSli.pop();
-        let disBool = this.state.disabled
         this.setState({
           series: secSer,
           sliceColor: secSli,
-          disabled: !disBool
         }, () => {
-          let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
-          console.log(this.state.series[0], sum)
-          this.setSliderValue((this.state.series[0]/sum) * 100)
+          let sum = this.props.series.reduce((total, n) => {return total + n}, 0);
+          this.setSliderValue((this.props.series[0]/sum) * 100)
         });
       } else if (!this.state.pp && this.state.aclu === true) {
-        let secSer = [this.state.series[1]];
+        let secSer = [this.props.series[1]];
         let secSli = [this.state.sliceColor[1]];
         this.setState({
           series: secSer,
           sliceColor: secSli
         }, () => {
-          let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
-          console.log(this.state.series[0], sum)
-          this.setSliderValue((this.state.series[0]/sum) * 100)
+          let sum = this.props.series.reduce((total, n) => {return total + n}, 0);
+          this.setSliderValue((this.props.series[0]/sum) * 100)
         });
       }
     } else {
       if (this.state.pp === true && this.state.aclu === true) {
-        let sum = this.state.series.reduce((total, n) => {return total + n}, 0)
+        let sum = this.props.series.reduce((total, n) => {return total + n}, 0)
         let secSer = [
-          this.state.series[0],
+          this.props.series[0],
           33,
-          this.state.series[1]
+          this.props.series[1]
         ];
-        console.log(secSer)
         let secSli = [
           this.state.sliceColor[0],
-          '#2196F3',
+          '#ccc',
           this.state.sliceColor[1]
         ];
         this.setState({
@@ -152,19 +172,19 @@ export default class Nav extends React.Component {
           sliceColor: secSli
         });
       } else if (this.state.pp === true) {
-        let secSer = this.state.series;
+        let secSer = this.props.series;
         let secSli = this.state.sliceColor;
         let sum = secSer.reduce((total, n) => {return total + n}, 0)
         secSer.push(sum/3);
-        secSli.push('#2196F3');
+        secSli.push('#777');
         this.setState({
           series: secSer,
           sliceColor: secSli
         });
       } else if (!this.state.pp && this.state.aclu === true) {
-        let half = this.state.series[0]/2
+        let half = this.props.series[0]/2
         let secSer = [half, half];
-        let secSli = ['#2196F3', this.state.sliceColor[0]];
+        let secSli = ['#eee', this.state.sliceColor[0]];
         this.setState({
           series: secSer,
           sliceColor: secSli
@@ -178,11 +198,11 @@ export default class Nav extends React.Component {
   }
 
   updateACLU() {
-    let secSer = this.state.series;
+    let secSer = this.props.series;
     let secSli = this.state.sliceColor;
     let bool = this.state.aclu;
     if (this.state.aclu === true) {
-      if (this.state.series.length === 1) {
+      if (this.props.series.length === 1) {
         return;
       }
       secSer.pop();
@@ -191,14 +211,13 @@ export default class Nav extends React.Component {
         series: secSer,
         sliceColor: secSli
       }, () => {
-        let sum = this.state.series.reduce((total, n) => {return total + n}, 0);
-        console.log(this.state.series[0], sum)
-        this.setSliderValue((this.state.series[0]/sum) * 100)
+        let sum = this.props.series.reduce((total, n) => {return total + n}, 0);
+        this.setSliderValue((this.props.series[0]/sum) * 100)
       });
     } else {
       let sum = secSer.reduce((total, n) => {return total + n}, 0)
       secSer.push(sum/secSer.length);
-      secSli.push('#FFEB3B');
+      secSli.push('#ddd');
       this.setState({
         series: secSer,
         sliceColor: secSli
@@ -210,7 +229,7 @@ export default class Nav extends React.Component {
   }
 
   adjustThirds(arr) {
-    let serUp = this.state.series;
+    let serUp = this.props.series;
     this.setState({
       series: [arr[0], arr[1] - arr[0], 99 - arr[1]]
     });
@@ -230,7 +249,9 @@ export default class Nav extends React.Component {
 
   renderNavContent() {
     if (this.state.selected === 'Home') {
-      return <Home />;
+      return <Home
+        username={this.props.username}
+      />;
     } else if (this.state.selected === 'Charities') {
       return (
         <Charities
@@ -245,17 +266,22 @@ export default class Nav extends React.Component {
           adjustThirds={this.adjustThirds.bind(this)}
           adjustHalves={this.adjustHalves.bind(this)}
           sliderOneValue={this.state.sliderOneValue}
-          onHomePress={this.onHomePress.bind(this)}
+          onDonePress={this.onDonePress.bind(this)}
           value={this.state.value}
           setSliderValue={this.setSliderValue.bind(this)}
+          user_id={this.props.user_id}
+          disabled={true}
         />
       );
     } else if (this.state.selected === 'Activity') {
       return <Activity />;
     } else if (this.state.selected === 'Profile') {
-      return <Profile />;
+      return <Profile
+        username={this.props.username}
+      />;
     }
   }
+
 
   render() {
     return (
@@ -264,30 +290,30 @@ export default class Nav extends React.Component {
           {this.renderNavContent()}
         </View>
         <View style={styles.navBar}>
-          <TouchableHighlight
-            onPress={this.onHomePress.bind(this)}
-            style={[styles.navBarItem, styles.one]}
-          >
-            <Text>home</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this.onCharitiesPress.bind(this)}
-            style={[styles.navBarItem, styles.two]}
-          >
-            <Text>charities</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this.onProfilePress.bind(this)}
-            style={[styles.navBarItem, styles.three]}
-          >
-            <Text>profile</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this.onActivityPress.bind(this)}
-            style={[styles.navBarItem, styles.four]}
-          >
-            <Text>activity</Text>
-          </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.onHomePress.bind(this)}
+              style={styles.navBarItem}
+            >
+              <Image source={require('../../../assets/icons/home-01.png')} style={styles.boxes}></Image>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.onCharitiesPress.bind(this)}
+              style={styles.navBarItem}
+            >
+              <Image source={require('../../../assets/icons/charities-01.png')} style={styles.boxes}></Image>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.onProfilePress.bind(this)}
+              style={styles.navBarItem}
+            >
+              <Image source={require('../../../assets/icons/profile-01.png')} style={styles.boxes}></Image>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.onActivityPress.bind(this)}
+              style={styles.navBarItem}
+            >
+              <Image source={require('../../../assets/icons/activity-01.png')} style={styles.boxes}></Image>
+            </TouchableHighlight>
         </View>
       </View>
     );
@@ -312,16 +338,9 @@ const styles = StyleSheet.create({
   navBarItem: {
     width: '25%'
   },
-  one: {
-    backgroundColor: 'green'
-  },
-  two: {
-    backgroundColor: 'yellow'
-  },
-  three: {
-    backgroundColor: 'blue'
-  },
-  four: {
-    backgroundColor: 'purple'
+  boxes: {
+    height: 80,
+    width: 80,
+
   }
 });

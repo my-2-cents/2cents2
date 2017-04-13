@@ -11,7 +11,7 @@ export class UserName extends React.Component {
     return (
       <View>
         <Text style={styles.username}>
-          Indiana Jones
+          {this.props.username}
         </Text>
       </View>
     );
@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
   username: {
     fontSize: 20,
     paddingTop: 10,
-    color: '#fafafa'
+    color: 'black'
   }
 });
