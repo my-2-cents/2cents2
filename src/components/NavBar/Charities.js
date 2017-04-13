@@ -10,7 +10,7 @@ export default class Charities extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={this.props.onDonePress} style={styles.check}>
+        <TouchableHighlight onPress={this.props.onDoneGraphPress} style={styles.check}>
           <Text>done!</Text>
         </TouchableHighlight>
         <Graph
