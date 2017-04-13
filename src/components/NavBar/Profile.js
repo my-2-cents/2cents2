@@ -23,7 +23,7 @@ import { TodaysDate } from '../bits/TodaysDate';
 import { MonoText } from '../bits/StyledText';
 import { ProfilePic } from '../bits/ProfilePic';
 import { UserName } from '../bits/UserName';
-import { NavButtons } from '../bits/NavButtons';
+
 
 
 export default class Profile extends React.Component {
@@ -42,27 +42,31 @@ export default class Profile extends React.Component {
       return (
         <View style={styles.headerBar}>
           <ProfilePic />
-          <UserName />
-          <TouchableHighlight onPress={this.handleMonthlyCap.bind(this)}>
+          <UserName
+            username={this.props.username}
+          />
+          <View style={styles.buttonBox}>
+          <TouchableHighlight onPress={this.handleMonthlyCap.bind(this)} style={styles.buttonStyle}>
             <Text>
-              monthlycap!
+              Monthly Cap
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={this.handleBankInfo.bind(this)}>
+          <TouchableHighlight onPress={this.handleBankInfo.bind(this)} style={styles.buttonStyle}>
             <Text>
-              bankInfo!
+              Bank Info
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={this.handleChangePassword.bind(this)}>
+          <TouchableHighlight onPress={this.handleChangePassword.bind(this)} style={styles.buttonStyle}>
             <Text>
-              changePassword!
+              Change Password
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight onPress={this.handleNotifications.bind(this)}>
+          <TouchableHighlight onPress={this.handleNotifications.bind(this)} style={styles.buttonStyle}>
             <Text>
-              notifications!
+              Notifications
             </Text>
           </TouchableHighlight>
+          </View>
         </View>
       )
     } else if (this.state.profileSelected === 'monthlyCap') {
@@ -148,36 +152,38 @@ export default class Profile extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   headerBar: {
     padding: 20,
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    // backgroundColor: 'rgba(100,149,237, 1)',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#fff',
     width: '100%',
     height: 10,
   },
-  showButtons: {
-    color: 'red',
-    backgroundColor: 'gray',
-    width: '100%',
-    fontSize: 54
-  },
   footerBox: {
     height: 80,
-  },
-  box: {
-    height: 400,
-    backgroundColor: '#fafafa',
   },
   hidden: {
     height: 0,
   },
-
+  buttonStyle: {
+    justifyContent: 'center',
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    width: '100%',
+    height: 40,
+    paddingLeft: 20
+  },
+  buttonBox: {
+    marginTop: 80,
+  }
 
 })

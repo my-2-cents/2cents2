@@ -104,7 +104,7 @@ export default class App extends React.Component {
     return (
       <Navigator
         initialRoute={{
-          id: 'Nav'
+          id: 'Splash'
         }}
         renderScene={(route, navigator) => {
             _navigator = navigator;
@@ -145,6 +145,7 @@ export default class App extends React.Component {
                   <Nav
                     navigator={navigator}
                     title={'Nav'}
+                    username={this.state.loginUsername}
                   />
                 </View>
               )

@@ -11,7 +11,7 @@ export class UserName extends React.Component {
     return (
       <View>
         <Text style={styles.username}>
-          Indiana Jones
+          {this.props.username}
         </Text>
       </View>
     );

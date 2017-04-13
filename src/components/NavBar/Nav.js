@@ -4,7 +4,8 @@ import {
   Text,
   TouchableHighlight,
   View,
-  Navigator
+  Navigator,
+  Image
 } from 'react-native';
 
 import Home from './Home';
@@ -18,12 +19,12 @@ export default class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'Charities',
+      selected: 'Home',
       series: [33, 33, 33],
       pp: true,
       unicef: true,
       aclu: true,
-      sliceColor: ['#F44336', '#2196F3', '#FFEB3B'],
+      sliceColor: ['#777', '#ccc', '#ddd'],
       sliderOneValue: [33, 66],
       value: 50,
       disabled: false
@@ -77,7 +78,7 @@ export default class Nav extends React.Component {
       let secSli = this.state.sliceColor;
       let sum = secSer.reduce((total, n) => {return total + n}, 0)
       secSer.unshift(sum/3);
-      secSli.unshift('#F44336');
+      secSli.unshift('#777');
       this.setState({
         series: secSer,
         sliceColor: secSli,
@@ -143,7 +144,7 @@ export default class Nav extends React.Component {
         console.log(secSer)
         let secSli = [
           this.state.sliceColor[0],
-          '#2196F3',
+          '#ccc',
           this.state.sliceColor[1]
         ];
         this.setState({
@@ -155,7 +156,7 @@ export default class Nav extends React.Component {
         let secSli = this.state.sliceColor;
         let sum = secSer.reduce((total, n) => {return total + n}, 0)
         secSer.push(sum/3);
-        secSli.push('#2196F3');
+        secSli.push('#777');
         this.setState({
           series: secSer,
           sliceColor: secSli
@@ -163,7 +164,7 @@ export default class Nav extends React.Component {
       } else if (!this.state.pp && this.state.aclu === true) {
         let half = this.state.series[0]/2
         let secSer = [half, half];
-        let secSli = ['#2196F3', this.state.sliceColor[0]];
+        let secSli = ['#eee', this.state.sliceColor[0]];
         this.setState({
           series: secSer,
           sliceColor: secSli
@@ -194,7 +195,7 @@ export default class Nav extends React.Component {
     } else {
       let sum = secSer.reduce((total, n) => {return total + n}, 0)
       secSer.push(sum/secSer.length);
-      secSli.push('#FFEB3B');
+      secSli.push('#ddd');
       this.setState({
         series: secSer,
         sliceColor: secSli
@@ -226,7 +227,9 @@ export default class Nav extends React.Component {
 
   renderNavContent() {
     if (this.state.selected === 'Home') {
-      return <Home />;
+      return <Home
+        username={this.props.username}
+      />;
     } else if (this.state.selected === 'Charities') {
       return (
         <Charities
@@ -250,7 +253,9 @@ export default class Nav extends React.Component {
     } else if (this.state.selected === 'Activity') {
       return <Activity />;
     } else if (this.state.selected === 'Profile') {
-      return <Profile />;
+      return <Profile
+        username={this.props.username}
+      />;
     }
   }
 
@@ -262,31 +267,30 @@ export default class Nav extends React.Component {
           {this.renderNavContent()}
         </View>
         <View style={styles.navBar}>
-          <TouchableHighlight
-            onPress={this.onHomePress.bind(this)}
-            style={[styles.navBarItem, styles.one]}
-          >
-            <Text>home</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this.onCharitiesPress.bind(this)}
-            style={[styles.navBarItem, styles.two]}
-          >
-            <Text>charities</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this.onProfilePress.bind(this)}
-            style={[styles.navBarItem, styles.three]}
-          >
-            <Text>profile</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this.onActivityPress.bind(this)}
-            style={[styles.navBarItem, styles.four]}
-          >
-            <Text>activity</Text>
-          </TouchableHighlight>
-
+            <TouchableHighlight
+              onPress={this.onHomePress.bind(this)}
+              style={styles.navBarItem}
+            >
+              <Image source={require('../../../assets/icons/home-01.png')} style={styles.boxes}></Image>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.onCharitiesPress.bind(this)}
+              style={styles.navBarItem}
+            >
+              <Image source={require('../../../assets/icons/charities-01.png')} style={styles.boxes}></Image>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.onProfilePress.bind(this)}
+              style={styles.navBarItem}
+            >
+              <Image source={require('../../../assets/icons/profile-01.png')} style={styles.boxes}></Image>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.onActivityPress.bind(this)}
+              style={styles.navBarItem}
+            >
+              <Image source={require('../../../assets/icons/activity-01.png')} style={styles.boxes}></Image>
+            </TouchableHighlight>
         </View>
       </View>
     );
@@ -311,16 +315,9 @@ const styles = StyleSheet.create({
   navBarItem: {
     width: '25%'
   },
-  one: {
-    backgroundColor: 'green'
-  },
-  two: {
-    backgroundColor: 'yellow'
-  },
-  three: {
-    backgroundColor: 'blue'
-  },
-  four: {
-    backgroundColor: 'purple'
+  boxes: {
+    height: 80,
+    width: 80,
+
   }
 });

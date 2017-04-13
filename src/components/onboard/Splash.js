@@ -4,7 +4,8 @@ import {
   Text,
   TouchableHighlight,
   View,
-  Navigator
+  Navigator,
+  Image
 } from 'react-native';
 
 export default class Splash extends React.Component {
@@ -32,12 +33,20 @@ export default class Splash extends React.Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text>Splash</Text>
+        <Image
+        source={require('../../../assets/icons/2centsText.png')}
+        style={styles.logoText}
+        ></Image>
+        <Image
+        source={require('../../../assets/icons/2centsBall.png')}
+        style={styles.logoIcon}
+        >
+        </Image>
         <TouchableHighlight onPress={this.onLoginPress.bind(this)} style={styles.touch}>
-          <Text>Go To Login!</Text>
+          <Text>LOGIN</Text>
         </TouchableHighlight>
         <TouchableHighlight onPress={this.onSignupPress.bind(this)} style={styles.touch}>
-          <Text>Go To Signup!</Text>
+          <Text>SIGNUP</Text>
         </TouchableHighlight>
       </View>
     )
@@ -49,13 +58,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fafafa'
+    backgroundColor: '#fafafa',
   },
   touch: {
     height: 40,
-    width: 100,
-    backgroundColor: '#fadfad',
-    marginBottom: 20
+    width: 200,
+    marginBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#68DEA8',
+    borderWidth: 0.8,
+    borderRadius: 20
   },
   largeWords: {
     fontSize: 20,
@@ -79,6 +92,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 25,
     left: 25,
+  },
+  logoIcon: {
+    height: 120,
+    width: 120,
+    marginBottom: 50
+  },
+  logoText: {
+    width: 200,
+    height: 50
   }
 })
 

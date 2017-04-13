@@ -13,7 +13,7 @@ export class MonthlyCap extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cap: 0,
+      cap: 15,
     }
   }
 

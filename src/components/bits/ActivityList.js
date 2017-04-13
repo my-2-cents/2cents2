@@ -9,16 +9,15 @@ import {
 export class ActivityList extends React.Component {
   render() {
     return (
-      <View>
+
       <View>
         <Text>
           Activity:
         </Text>
       <View style={styles.totalBox}>
-        <Text style={styles.totalText}>My Monthly Donation:</Text>
+        <Text style={styles.totalText}>Donations to Date this Montly Cycle</Text>
         <Text style={styles.totalText}>$ 7.43</Text>
 
-      </View>
       </View>
         <ScrollView>
           <Text>
@@ -91,15 +90,14 @@ export class ActivityList extends React.Component {
 const styles = StyleSheet.create({
   totalBox: {
     width: '100%',
-    height: 200,
-    backgroundColor: 'rgba(100,149,237, 0.2)',
+    height: 100,
+    backgroundColor: '#eee',
     flexDirection: 'column',
     justifyContent: 'center',
   },
   totalText: {
-    fontSize: 36,
+    fontSize: 20,
     textAlign: 'center',
-    color: '#817D7D'
   }
 });
 
