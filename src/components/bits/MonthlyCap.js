@@ -5,42 +5,36 @@ import {
   View,
   Text,
   Button,
+  TouchableHighlight,
   Image } from 'react-native';
 
 export class MonthlyCap extends React.Component {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     plaidVerification: {}, // bank accounts, address, full name, etc.
-  //     cap: 0, // User's monthly cap
-  //     currentCharities: [], // User's selected charities
-  //     userProfilePic: '', // is this a uri ref? Where is this stored?
-  //     percentOfCap: 0, // this will help render the pie chart of monthly giving
-  //     notifications: {}, // receive push notifications? Email updates?
-  //   }
-  // }
-
-
   constructor(props) {
     super(props)
     this.state = {
-      cap: 0,
+      cap: 15,
     }
   }
 
   handleIncreaseCap = ()=> {
     let cap = this.state.cap;
+    this.setState(prevState => ({
+      cap: prevState.cap + 1})
+    );
     this.setState ({
-      cap: cap +5
+      cap: cap +1
     });
   }
 
   handleDecreaseCap = ()=> {
     let cap = this.state.cap;
     if (this.state.cap > 0) {
+      this.setState(prevState => ({
+        cap: prevState.cap - 1})
+      );
       this.setState ({
-        cap: cap -5
+        cap: cap -1
       });
     }
   }
@@ -48,14 +42,18 @@ export class MonthlyCap extends React.Component {
   render() {
     return (
       <View>
-
-        <Text style={{fontFamily: 'Marker Felt'}}>
+          <TouchableHighlight onPress={this.props.goBack}>
+            <Text>
+              go back!
+            </Text>
+          </TouchableHighlight>
+        <Text>
           Monthly Cap
         </Text>
 
         <View style={styles.counter}>
           <View>
-            <Text style={{fontFamily: 'Marker Felt', fontSize: 40}}>
+            <Text style={{fontSize: 40}}>
               ${this.state.cap}
             </Text>
           </View>
@@ -63,6 +61,9 @@ export class MonthlyCap extends React.Component {
             <Button title="Boost It!" color="black" onPress={this.handleIncreaseCap}/>
             <Button title="Decrease It" color="black" onPress={this.handleDecreaseCap}/>
           </View>
+          <TouchableHighlight onPress={this.props.saveCap} style={styles.save}>
+            <Text>Save New Cap</Text>
+          </TouchableHighlight>
         </View>
 
       </View>
@@ -78,5 +79,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: 'rgba(100,149,237, 1)',
     width: '100%',
-  }
+  },
+  save: {
+    padding: 20,
+    // flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(100,34,86, 1)',
+  },
+
 });

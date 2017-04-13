@@ -34,13 +34,13 @@ export default class CharitiesList extends React.Component {
 
 const styles = StyleSheet.create({
   pp: {
-    backgroundColor: '#F44336'
+    backgroundColor: '#777'
   },
   unicef: {
-    backgroundColor: '#2196F3'
+    backgroundColor: '#ccc'
   },
   aclu: {
-    backgroundColor: '#FFEB3B'
+    backgroundColor: '#ddd'
   },
   label: {
     color: 'black'

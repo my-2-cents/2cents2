@@ -11,8 +11,8 @@ export class ProfilePic extends React.Component {
     return (
       <View>
         <Image
-          style= {{ height:150, width: 150, borderRadius: 75 }}
-          source={{uri: 'http://www.lucasfan.com/raidersofthelostark/indy.jpg'}}
+          style= {{ height:80, width: 80, borderRadius: 25 }}
+          source={require('../../../assets/icons/profile.png')}
         />
       </View>
     );
