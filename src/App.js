@@ -49,7 +49,7 @@ export default class App extends React.Component {
   }
 
   onLoginSubmit(renderAfterLogin) {
-    return fetch('http://localhost:3000/user/login', {
+    return fetch('https://two-cents-server.herokuapp.com/user/login', {
       method: 'POST',
       headers: {
         'content-type': 'application/JSON'
@@ -70,7 +70,6 @@ export default class App extends React.Component {
           ]
         )
       } else {
-        console.log(data)
         this.setState({
           loginUsername: '',
           loginPassword: '',
@@ -91,7 +90,7 @@ export default class App extends React.Component {
   }
 
   onSignupSubmit(renderAfterSignup) {
-    return fetch('http://localhost:3000/user/signup', {
+    return fetch('https://two-cents-server.herokuapp.com/user/signup', {
       method: 'POST',
       headers: {
         'content-type': 'application/JSON'
