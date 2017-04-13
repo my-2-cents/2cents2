@@ -50,6 +50,7 @@ export default class Signup extends React.Component {
           onChangeText={this.props.trackSignupPassword}
           autoCorrect={false}
           autoCapitalize={'none'}
+          secureTextEntry={true}
         />
         <Text style={styles.largeWords}>
           CONFIRM PASSWORD
@@ -59,6 +60,7 @@ export default class Signup extends React.Component {
           onChangeText={this.props.trackSignupConfirm}
           autoCorrect={false}
           autoCapitalize={'none'}
+          secureTextEntry={true}
         />
         <TouchableHighlight onPress={() => {this.props.onSignupSubmit(this.renderAfterSignup.bind(this))}} style={styles.goWords}>
           <Text>
