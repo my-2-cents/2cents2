@@ -70,6 +70,7 @@ export default class App extends React.Component {
           ]
         )
       } else {
+        console.log(data)
         this.setState({
           loginUsername: '',
           loginPassword: '',

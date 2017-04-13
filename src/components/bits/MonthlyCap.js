@@ -6,62 +6,41 @@ import {
   Text,
   Button,
   TouchableHighlight,
-  Image } from 'react-native';
+  Image
+} from 'react-native';
 
 export class MonthlyCap extends React.Component {
-
   constructor(props) {
-    super(props)
-    this.state = {
-      cap: 15,
-    }
-  }
-
-  handleIncreaseCap = ()=> {
-    let cap = this.state.cap;
-    this.setState(prevState => ({
-      cap: prevState.cap + 1})
-    );
-    this.setState ({
-      cap: cap +1
-    });
-  }
-
-  handleDecreaseCap = ()=> {
-    let cap = this.state.cap;
-    if (this.state.cap > 0) {
-      this.setState(prevState => ({
-        cap: prevState.cap - 1})
-      );
-      this.setState ({
-        cap: cap -1
-      });
-    }
+    super(props);
   }
 
   render() {
     return (
       <View>
-          <TouchableHighlight onPress={this.props.goBack}>
-            <Text>
-              go back!
-            </Text>
-          </TouchableHighlight>
+        <TouchableHighlight onPress={this.props.goBack}>
+          <Text>
+            go back!
+          </Text>
+        </TouchableHighlight>
         <Text>
           Monthly Cap
         </Text>
 
         <View style={styles.counter}>
           <View>
-            <Text style={{fontSize: 40}}>
-              ${this.state.cap}
+            <Text style={{ fontSize: 40 }}>
+              {this.props.monthlyCap}
             </Text>
           </View>
           <View>
-            <Button title="Boost It!" color="black" onPress={this.handleIncreaseCap}/>
-            <Button title="Decrease It" color="black" onPress={this.handleDecreaseCap}/>
+            <TouchableHighlight onPress={this.props.handleIncreaseCap}>
+              <Text>Boost It!</Text>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={this.props.handleDecreaseCap}>
+              <Text>Decrease It!</Text>
+            </TouchableHighlight>
           </View>
-          <TouchableHighlight onPress={this.props.saveCap} style={styles.save}>
+          <TouchableHighlight onPress={this.props.onDoneMonthlyCapPress} style={styles.save}>
             <Text>Save New Cap</Text>
           </TouchableHighlight>
         </View>
@@ -78,14 +57,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'rgba(100,149,237, 1)',
-    width: '100%',
+    width: '100%'
   },
   save: {
     padding: 20,
     // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(100,34,86, 1)',
-  },
-
+    backgroundColor: 'rgba(100,34,86, 1)'
+  }
 });
