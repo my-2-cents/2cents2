@@ -18,6 +18,7 @@ export default class Activity extends React.Component {
     return(
       <View style={styles.container}>
         <ActivityList />
+        <View style={styles.box}></View>
       </View>
     )
   }
@@ -52,5 +53,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 25,
     left: 25,
+  },
+  box: {
+    height: 80
   }
 })

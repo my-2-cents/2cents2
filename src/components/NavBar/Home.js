@@ -21,16 +21,18 @@ export default class Home extends React.Component {
    return(
      <View style={styles.container}>
          <View style={styles.headerBar}>
-           <UserName />
+           <UserName
+            username={this.props.username}
+           />
            <TodaysDate />
          </View>
-         <Text>My name is {this.props.name}</Text>
          <View style={styles.charities}>
            <Charities />
          </View>
          <ScrollView style={styles.feed}>
            <Feed />
          </ScrollView>
+         <View style={styles.box}></View>
        </View>
    )
  }
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
    // flex: 1,
    flexDirection: 'row',
    justifyContent: 'space-between',
-   backgroundColor: 'rgba(100,149,237, 1)',
+   backgroundColor: '#ddd',
    width: '100%',
    height: 80,
  },
@@ -56,14 +58,17 @@ const styles = StyleSheet.create({
    // flex: 1,
    flexDirection: 'row',
    justifyContent: 'space-between',
-   backgroundColor: 'rgba(100,149,237, 0.3)',
+   backgroundColor: '#eee',
    width: '100%',
    height: 170,
  },
  feed: {
-   backgroundColor: 'rgba(100,149,237, 0.2)',
+   backgroundColor: '#ccc',
    width: '100%',
    height: 600,
+ },
+ box: {
+  height: 80
  }
 });
 

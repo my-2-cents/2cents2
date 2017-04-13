@@ -11,10 +11,10 @@ export class TodaysDate extends React.Component {
     return (
       <View style={styles.outerDate}>
         <Text style={styles.innerDate}>
-          Wednesday
+          Thursday
         </Text>
         <Text style={styles.innerDate}>
-          3/22/2017
+          4/13/2017
         </Text>
       </View>
     );
