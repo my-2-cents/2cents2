@@ -39,6 +39,8 @@ export default class Signup extends React.Component {
         <TextInput style={styles.enterInfo}
           value={this.state.signupUsername}
           onChangeText={this.props.trackSignupUsername}
+          autoCorrect={false}
+          autoCapitalize={'none'}
         />
         <Text style={styles.largeWords}>
           PASSWORD
@@ -46,6 +48,8 @@ export default class Signup extends React.Component {
         <TextInput style={styles.enterInfo}
           value={this.state.signupPassword}
           onChangeText={this.props.trackSignupPassword}
+          autoCorrect={false}
+          autoCapitalize={'none'}
         />
         <Text style={styles.largeWords}>
           CONFIRM PASSWORD
@@ -53,6 +57,8 @@ export default class Signup extends React.Component {
         <TextInput style={styles.enterInfo}
           value={this.state.signupConfirm}
           onChangeText={this.props.trackSignupConfirm}
+          autoCorrect={false}
+          autoCapitalize={'none'}
         />
         <TouchableHighlight onPress={() => {this.props.onSignupSubmit(this.renderAfterSignup.bind(this))}} style={styles.goWords}>
           <Text>
