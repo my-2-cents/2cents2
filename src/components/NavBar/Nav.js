@@ -46,7 +46,7 @@ export default class Nav extends React.Component {
     let lessCap = this.state.monthlyCap - 1;
     this.setState({
       monthlyCap: lessCap
-    })
+    });
   };
 
   onHomePress() {
@@ -74,16 +74,19 @@ export default class Nav extends React.Component {
   }
 
   onDoneGraphPress() {
-    return fetch(`http://localhost:3000/user/${this.props.user_id}/series`, {
-      method: 'PUT',
-      headers: {
-        'content-type': 'application/JSON',
-        authorization: `Bearer ${this.props.token}`
-      },
-      body: JSON.stringify({
-        series: this.state.series
-      })
-    })
+    return fetch(
+      `https://two-cents-server.herokuapp.com/user/${this.props.user_id}/series`,
+      {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/JSON',
+          authorization: `Bearer ${this.props.token}`
+        },
+        body: JSON.stringify({
+          series: this.state.series
+        })
+      }
+    )
       .then(r => r.json())
       .then(data => {
         this.setState({
@@ -95,7 +98,7 @@ export default class Nav extends React.Component {
 
   onDoneMonthlyCapPress() {
     return fetch(
-      `http://localhost:3000/user/${this.props.user_id}/monthlyCap`,
+      `https://two-cents-server.herokuapp.com/user/${this.props.user_id}/monthlyCap`,
       {
         method: 'PUT',
         headers: {
@@ -110,7 +113,7 @@ export default class Nav extends React.Component {
       .then(r => r.json())
       .then(data => {
         this.setState({
-          monthlyCap: data.monthlyCap,
+          monthlyCap: data.monthlycap,
           selected: 'Home'
         });
       });
@@ -378,7 +381,7 @@ export default class Nav extends React.Component {
           handleDecreaseCap={this.handleDecreaseCap.bind(this)}
           handleIncreaseCap={this.handleIncreaseCap.bind(this)}
         />
-      )
+      );
     }
   }
 
