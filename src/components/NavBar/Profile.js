@@ -35,6 +35,7 @@ export default class Profile extends React.Component {
   }
 
   renderAfterLogout() {
+    this.props.onLogoutSubmit();
     this.props.navigator.push({
       id: 'Splash'
     });
