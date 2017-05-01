@@ -380,6 +380,7 @@ export default class Nav extends React.Component {
           onDoneMonthlyCapPress={this.onDoneMonthlyCapPress.bind(this)}
           handleDecreaseCap={this.handleDecreaseCap.bind(this)}
           handleIncreaseCap={this.handleIncreaseCap.bind(this)}
+          navigator={this.props.navigator}
         />
       );
     }

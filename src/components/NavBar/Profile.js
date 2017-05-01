@@ -34,6 +34,12 @@ export default class Profile extends React.Component {
     };
   }
 
+  renderAfterLogout() {
+    this.props.navigator.push({
+      id: 'Splash'
+    });
+  };
+
   // Check to see if navigation buttons have been clicked
   renderProfileSelected() {
     if (this.state.profileSelected === 'default') {
@@ -73,6 +79,12 @@ export default class Profile extends React.Component {
               <Text>
                 Notifications
               </Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.renderAfterLogout.bind(this)}
+              style={styles.buttonStyle}
+            >
+              <Text>Logout</Text>
             </TouchableHighlight>
           </View>
         </View>
