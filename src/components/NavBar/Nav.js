@@ -382,7 +382,6 @@ export default class Nav extends React.Component {
           handleIncreaseCap={this.handleIncreaseCap.bind(this)}
           navigator={this.props.navigator}
           onLogoutSubmit={this.props.onLogoutSubmit}
-          testUsername={this.props.testUsername}
         />
       );
     }

@@ -137,12 +137,20 @@ export default class App extends React.Component {
   onLogoutSubmit() {
     console.log('before' + this.state.username);
     this.setState({
-      username: 'this should be an empty string',
+      username: 'logged out user',
+    //       signupUsername: '',
+    //       signupPassword: '',
+    //       signupConfirm: '',
+    //       username: '',
+    //       monthlyCap: null,
+    //       tempSeries: [],
+    //       user_id: null,
+    //       token: null
     });
   }
 
-  testUsername() {
-    console.log('after' + this.state.username);
+  componentDidUpdate() {
+      console.log('after' + this.state.username);
   }
 
   render() {
@@ -196,7 +204,6 @@ export default class App extends React.Component {
                     user_id={this.state.user_id}
                     token={this.state.token}
                     onLogoutSubmit={this.onLogoutSubmit.bind(this)}
-                    testUsername={this.testUsername.bind(this)}
                   />
                 </View>
               )
