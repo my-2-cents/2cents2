@@ -36,9 +36,10 @@ export default class Profile extends React.Component {
 
   renderAfterLogout() {
     this.props.onLogoutSubmit();
-    this.props.navigator.push({
-      id: 'Splash'
-    });
+    this.props.testUsername();
+    // this.props.navigator.push({
+    //   id: 'Splash'
+    // });
   };
 
   // Check to see if navigation buttons have been clicked

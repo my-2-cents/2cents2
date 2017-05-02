@@ -135,15 +135,13 @@ export default class App extends React.Component {
   }
 
   onLogoutSubmit() {
-  // TEST CURRRENT STATE
     console.log('before' + this.state.username);
-// BELOW IN SETSTATE, ALL USER AND SESSION DATA SHOULD BE RESET
-// CURRENTLY JUST TRYING TO RESET USERNAME TO SEE IF STATE IS UPDATING
-// NOT CURRENTLY FUNCTIONAL
     this.setState({
       username: 'this should be an empty string',
     });
-// TEST RESET STATE
+  }
+
+  testUsername() {
     console.log('after' + this.state.username);
   }
 
@@ -198,6 +196,7 @@ export default class App extends React.Component {
                     user_id={this.state.user_id}
                     token={this.state.token}
                     onLogoutSubmit={this.onLogoutSubmit.bind(this)}
+                    testUsername={this.testUsername.bind(this)}
                   />
                 </View>
               )
