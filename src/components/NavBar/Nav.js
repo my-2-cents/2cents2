@@ -17,7 +17,7 @@ export default class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'Profile',
+      selected: 'Home',
       pp: true,
       unicef: true,
       aclu: true,
