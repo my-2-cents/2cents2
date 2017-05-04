@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Navigator,
   ScrollView,
   StyleSheet,
   View,
@@ -12,6 +13,13 @@ import {
 export class MonthlyCap extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  saveCap = () => {
+    let cap = this.state.cap;
+    this.props.navigator.push({
+    id: 'Monthly Cap'
+    });
   }
 
   render() {
@@ -57,7 +65,7 @@ export class MonthlyCap extends React.Component {
           onPress={this.props.onDoneMonthlyCapPress}
           style={styles.save}
         >
-          <Text>SAVE</Text>
+          <Text>Save New Cap</Text>
         </TouchableHighlight>
 
       </View>
