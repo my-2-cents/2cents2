@@ -10,12 +10,13 @@ export default class Charities extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={this.props.onHomePress} style={styles.check}>
+        <TouchableHighlight onPress={this.props.onDoneGraphPress} style={styles.check}>
           <Text>done!</Text>
         </TouchableHighlight>
         <Graph
           series={this.props.series}
           sliceColor={this.props.sliceColor}
+          user_id={this.props.user_id}
         />
         <Fiddler
           sliderOneValue={this.props.sliderOneValue}
@@ -32,6 +33,7 @@ export default class Charities extends React.Component {
           pp={this.props.pp}
           aclu={this.props.aclu}
           unicef={this.props.unicef}
+          token={this.props.token}
         />
       </View>
     );

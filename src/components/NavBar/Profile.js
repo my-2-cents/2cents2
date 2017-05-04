@@ -13,34 +13,33 @@ import {
   Button
 } from 'react-native';
 
-import Nav from './Nav.js'
+import Nav from './Nav.js';
 
 import { ChangePassword } from '../bits/ChangePassword';
 import { MonthlyCap } from '../bits/MonthlyCap';
 import { BankInfo } from '../bits/BankInfo';
-import { Notifications} from '../bits/Notifications';
+import { Notifications } from '../bits/Notifications';
 import { TodaysDate } from '../bits/TodaysDate';
 import { MonoText } from '../bits/StyledText';
 import { ProfilePic } from '../bits/ProfilePic';
 import { UserName } from '../bits/UserName';
-import { NavButtons } from '../bits/NavButtons';
-
 
 export default class Profile extends React.Component {
   constructor() {
     super();
-      this.state = {
-        picked: 'null',
-        profileSelected: 'default',
-        showButtons: 'showButtons',
-        }
+    this.state = {
+      picked: 'null',
+      profileSelected: 'default',
+      showButtons: 'showButtons'
     };
+  }
 
   // Check to see if navigation buttons have been clicked
   renderProfileSelected() {
     if (this.state.profileSelected === 'default') {
       return (
         <View style={styles.headerBar}>
+<<<<<<< HEAD
           <Text>
             Profile
           </Text>
@@ -66,62 +65,92 @@ export default class Profile extends React.Component {
               notifications!
             </Text>
           </TouchableHighlight>
+=======
+          <ProfilePic />
+          <UserName username={this.props.username} />
+          <View style={styles.buttonBox}>
+            <TouchableHighlight
+              onPress={this.handleMonthlyCap.bind(this)}
+              style={styles.buttonStyle}
+            >
+              <Text>
+                Monthly Cap
+              </Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.handleBankInfo.bind(this)}
+              style={styles.buttonStyle}
+            >
+              <Text>
+                Bank Info
+              </Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.handleChangePassword.bind(this)}
+              style={styles.buttonStyle}
+            >
+              <Text>
+                Change Password
+              </Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this.handleNotifications.bind(this)}
+              style={styles.buttonStyle}
+            >
+              <Text>
+                Notifications
+              </Text>
+            </TouchableHighlight>
+          </View>
+>>>>>>> a8b07317c28edbc1896bc44d0f9abfa36438a92d
         </View>
-      )
+      );
     } else if (this.state.profileSelected === 'monthlyCap') {
       return (
         <MonthlyCap
+          monthlyCap={this.props.monthlyCap}
           goBack={this.goBack.bind(this)}
+          onDoneMonthlyCapPress={this.props.onDoneMonthlyCapPress}
+          handleIncreaseCap={this.props.handleIncreaseCap}
+          handleDecreaseCap={this.props.handleDecreaseCap}
         />
       )
     } else if (this.state.profileSelected === 'bankInfo') {
-      return (
-        <BankInfo
-          goBack={this.goBack.bind(this)}
-        />
-      )
+      return <BankInfo goBack={this.goBack.bind(this)} />;
     } else if (this.state.profileSelected === 'notifications') {
-      return (
-        <Notifications
-          goBack={this.goBack.bind(this)}
-        />
-      )
+      return <Notifications goBack={this.goBack.bind(this)} />;
     } else if (this.state.profileSelected === 'changePassword') {
-      return (
-        <ChangePassword
-          goBack={this.goBack.bind(this)}
-        />
-      )
+      return <ChangePassword goBack={this.goBack.bind(this)} />;
     }
   }
 
   goBack() {
     this.setState({
       profileSelected: 'default'
-    })
+    });
   }
 
   handleChangePassword() {
     this.setState({
-      profileSelected: 'changePassword',
+      profileSelected: 'changePassword'
     });
   }
 
   handleMonthlyCap() {
     this.setState({
-      profileSelected: 'monthlyCap',
+      profileSelected: 'monthlyCap'
     });
   }
 
   handleBankInfo() {
     this.setState({
-      profileSelected: 'bankInfo',
+      profileSelected: 'bankInfo'
     });
   }
 
   handleNotifications() {
     this.setState({
-      profileSelected: 'notifications',
+      profileSelected: 'notifications'
     });
   }
 
@@ -134,53 +163,60 @@ export default class Profile extends React.Component {
   }
 
   buttonStyle() {
-    return({
+    return {
       color: 'red'
-    })
+    };
   }
 
   render() {
-    return(
+    return (
       <View style={styles.container}>
         {this.renderProfileSelected()}
-        <View style={styles.footerBox}></View>
+        <View style={styles.footerBox} />
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-around',
+    alignItems: 'center'
   },
   headerBar: {
     padding: 20,
     flex: 1,
     flexDirection: 'column',
+<<<<<<< HEAD
     justifyContent: 'space-between',
     // backgroundColor: 'rgba(100,149,237, 1)',
     backgroundColor: 'lightgray',
+=======
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+>>>>>>> a8b07317c28edbc1896bc44d0f9abfa36438a92d
     width: '100%',
-    height: 10,
-  },
-  showButtons: {
-    color: 'red',
-    backgroundColor: 'gray',
-    width: '100%',
-    fontSize: 54
+    height: 10
   },
   footerBox: {
-    height: 80,
-  },
-  box: {
-    height: 400,
-    backgroundColor: '#fafafa',
+    height: 80
   },
   hidden: {
-    height: 0,
+    height: 0
   },
-
-
-})
+  buttonStyle: {
+    justifyContent: 'center',
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    width: '100%',
+    height: 40,
+    paddingLeft: 20
+  },
+  buttonBox: {
+    marginTop: 80
+  }
+});

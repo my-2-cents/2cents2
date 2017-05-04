@@ -21,24 +21,18 @@ export default class Fiddler extends React.Component {
   }
 
   handleSlider() {
-    console.log('checking slider')
     if (this.props.series.length === 1) {
       this.setState({
         disabled: true
-      }, () => {
-        console.log('set to true', this.state.disabled)
       })
     } else {
       this.setState({
         disabled: false
-      }, () => {
-        console.log('set to false', this.state.disabled)
       })
     }
   }
 
   componentWillReceiveProps() {
-    console.log('it changed', this.props.series.length)
     this.handleSlider();
   }
 

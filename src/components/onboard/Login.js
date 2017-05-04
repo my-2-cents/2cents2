@@ -31,27 +31,33 @@ export default class Login extends React.Component {
     return(
       <KeyboardAvoidingView behavior={this.state.behavior} style={styles.container}>
         <TouchableHighlight onPress={this.goBack.bind(this)} style={styles.backArrow}>
-          <Text>Go back</Text>
+          <Text style={styles.arrowText}>BACK</Text>
         </TouchableHighlight>
+
         <Text style={styles.largeWords}>
-          Username:
+          USERNAME
         </Text>
         <KeyboardAvoidingView behavior={this.state.behavior}>
           <TextInput style={styles.enterInfo}
             value={this.state.loginUsername}
             onChangeText={this.props.trackLoginUsername.bind(this)}
+            autoCorrect={false}
+            autoCapitalize={'none'}
           />
         </KeyboardAvoidingView>
         <Text style={styles.largeWords}>
-          Password:
+          PASSWORD
         </Text>
         <TextInput style={styles.enterInfo}
           value={this.state.loginPassword}
           onChangeText={this.props.trackLoginPassword.bind(this)}
+          autoCorrect={false}
+          autoCapitalize={'none'}
+          secureTextEntry={true}
         />
-        <TouchableHighlight onPress={() => {this.props.onLoginSubmit(this.renderAfterLogin.bind(this))}}>
-          <Text style={styles.goWords}>
-            Go!
+        <TouchableHighlight onPress={() => {this.props.onLoginSubmit(this.renderAfterLogin.bind(this))}} style={styles.goWords}>
+          <Text>
+            GO
           </Text>
         </TouchableHighlight>
       </KeyboardAvoidingView>
@@ -68,31 +74,49 @@ const styles = StyleSheet.create({
   },
   touch: {
     height: 40,
-    width: 100,
-    backgroundColor: '#fadfad',
-    marginBottom: 20
+    width: 200,
+    marginBottom: 20,
   },
   largeWords: {
-    fontSize: 20,
+    fontSize: 15,
   },
   enterInfo: {
+    fontSize: 20,
     margin: 10,
-    height: 50,
-    width: 240,
+    height: 40,
+    width: 200,
     alignSelf: 'center',
     textAlign: 'center',
-    borderWidth: 1,
-    borderColor: 'grey'
+    borderColor: '#68DEA8',
+    borderWidth: 0.8,
+    borderRadius: 20,
+    marginBottom: 40
   },
   goWords: {
-    fontSize: 40,
-    width: 240,
-    textAlign: 'center',
-    backgroundColor: '#addfad',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+    width: 200,
+    height: 50,
+    backgroundColor: '#68DEA8',
+    borderRadius: 20,
   },
   backArrow: {
     position: 'absolute',
     top: 25,
     left: 25,
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#68DEA8',
+    height: 30,
+    width: 50,
+    borderRadius: 20
+  },
+  arrowText: {
+    color: '#fafafa',
+    fontSize: 12,
+    textAlign: 'center',
+    alignSelf: 'center',
+
   }
 })
