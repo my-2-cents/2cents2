@@ -61,12 +61,9 @@ export class MonthlyCap extends React.Component {
               <Text style={styles.buttonText}>-</Text>
             </TouchableHighlight>
           </View>
-<<<<<<< HEAD
           <TouchableHighlight onPress={this.saveCap} style={styles.save}>
             <Text>Save New Cap</Text>
           </TouchableHighlight>
-=======
->>>>>>> a8b07317c28edbc1896bc44d0f9abfa36438a92d
         </View>
         <TouchableHighlight
           onPress={this.props.onDoneMonthlyCapPress}
