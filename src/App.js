@@ -158,7 +158,7 @@ export default class App extends React.Component {
     return (
       <Navigator
         initialRoute={{
-          id: 'Nav'
+          id: 'Splash'
         }}
         renderScene={(route, navigator) => {
             _navigator = navigator;

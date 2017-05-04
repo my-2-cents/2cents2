@@ -44,28 +44,7 @@ export default class Profile extends React.Component {
           </Text>
           <ProfilePic style={styles.profilePic} />
           <UserName />
-          <TouchableHighlight onPress={this.handleMonthlyCap.bind(this)}>
-            <Text>
-              monthlycap!
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={this.handleBankInfo.bind(this)}>
-            <Text>
-              bankInfo!
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={this.handleChangePassword.bind(this)}>
-            <Text>
-              changePassword!
-            </Text>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={this.handleNotifications.bind(this)}>
-            <Text>
-              notifications!
-            </Text>
-          </TouchableHighlight>
-          <ProfilePic />
-          <UserName username={this.props.username} />
+
           <View style={styles.buttonBox}>
             <TouchableHighlight
               onPress={this.handleMonthlyCap.bind(this)}
@@ -100,6 +79,7 @@ export default class Profile extends React.Component {
               </Text>
             </TouchableHighlight>
           </View>
+          <TouchableHighlight><Text>Log Out</Text></TouchableHighlight>
         </View>
       );
     } else if (this.state.profileSelected === 'monthlyCap') {

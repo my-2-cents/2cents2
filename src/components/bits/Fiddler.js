@@ -46,7 +46,10 @@ export default class Fiddler extends React.Component {
             min={1}
             max={98}
             onValuesChange={this.props.adjustThirds}
-            maximumTrackTintColor={"red"}
+
+            maximumTrackTintColor={'red'}
+            selectedStyle={{backgroundColor: 'gray'}}
+
           />
         </View>
       );
