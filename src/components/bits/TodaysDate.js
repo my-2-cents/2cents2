@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   innerDate: {
-    justifyContent: "center",
-    color: "#fafafa"
+    justifyContent: 'center',
+    color: '#777'
   }
 });
