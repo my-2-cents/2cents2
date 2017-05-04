@@ -75,6 +75,7 @@ export default class Profile extends React.Component {
               </Text>
             </TouchableHighlight>
           </View>
+          <TouchableHighlight><Text>Log Out</Text></TouchableHighlight>
         </View>
       );
     } else if (this.state.profileSelected === 'monthlyCap') {
