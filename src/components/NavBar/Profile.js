@@ -39,7 +39,6 @@ export default class Profile extends React.Component {
     if (this.state.profileSelected === 'default') {
       return (
         <View style={styles.headerBar}>
-<<<<<<< HEAD
           <Text>
             Profile
           </Text>
@@ -65,7 +64,6 @@ export default class Profile extends React.Component {
               notifications!
             </Text>
           </TouchableHighlight>
-=======
           <ProfilePic />
           <UserName username={this.props.username} />
           <View style={styles.buttonBox}>
@@ -102,7 +100,6 @@ export default class Profile extends React.Component {
               </Text>
             </TouchableHighlight>
           </View>
->>>>>>> a8b07317c28edbc1896bc44d0f9abfa36438a92d
         </View>
       );
     } else if (this.state.profileSelected === 'monthlyCap') {
@@ -190,15 +187,12 @@ const styles = StyleSheet.create({
     padding: 20,
     flex: 1,
     flexDirection: 'column',
-<<<<<<< HEAD
     justifyContent: 'space-between',
     // backgroundColor: 'rgba(100,149,237, 1)',
     backgroundColor: 'lightgray',
-=======
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
->>>>>>> a8b07317c28edbc1896bc44d0f9abfa36438a92d
     width: '100%',
     height: 10
   },
