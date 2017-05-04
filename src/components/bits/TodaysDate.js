@@ -1,10 +1,5 @@
-import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  Text,
-  Image } from 'react-native';
+import React from "react";
+import { ScrollView, StyleSheet, View, Text, Image } from "react-native";
 
 export class TodaysDate extends React.Component {
   render() {
@@ -23,8 +18,8 @@ export class TodaysDate extends React.Component {
 
 const styles = StyleSheet.create({
   outerDate: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    flexDirection: "column",
+    justifyContent: "space-between"
   },
   innerDate: {
     justifyContent: 'center',
