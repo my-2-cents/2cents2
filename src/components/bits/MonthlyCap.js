@@ -17,7 +17,6 @@ export class MonthlyCap extends React.Component {
 
   saveCap = () => {
     let cap = this.state.cap;
-    // some code
     this.props.navigator.push({
     id: 'Monthly Cap'
     });
