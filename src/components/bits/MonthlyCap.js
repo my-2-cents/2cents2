@@ -46,6 +46,12 @@ export class MonthlyCap extends React.Component {
               {this.props.monthlyCap}
             </Text>
           </View>
+          <View>
+            <Button title="-" color="black" onPress={this.handleDecreaseCap}/>      
+           <Button title="+" color="black" onPress={this.handleIncreaseCap}/>
+            
+          </View>
+        </View>
           <View style={styles.buttonContainer}>
             <TouchableHighlight
               onPress={this.props.handleIncreaseCap}
@@ -67,7 +73,6 @@ export class MonthlyCap extends React.Component {
         >
           <Text>Save New Cap</Text>
         </TouchableHighlight>
-
       </View>
     );
   }
@@ -113,6 +118,15 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   arrowText: {
+    color: '#fafafa',
+    fontSize: 12,
+    textAlign: 'center',
+    alignSelf: 'center',
+  },
+  capText: {
+    textAlign: 'center',
+    width: '80%',
+    marginBottom: 40,
     color: "#fafafa",
     fontSize: 12,
     textAlign: "center",
