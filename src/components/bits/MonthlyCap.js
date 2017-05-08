@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Navigator,
   ScrollView,
   StyleSheet,
   View,
@@ -14,52 +15,63 @@ export class MonthlyCap extends React.Component {
     super(props);
   }
 
+  saveCap = () => {
+    let cap = this.state.cap;
+    this.props.navigator.push({
+    id: 'Monthly Cap'
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight
-          onPress={this.props.goBack}
-          style={styles.backArrow}
-        >
-          <Text style={styles.arrowText}>
-            BACK
+          <TouchableHighlight
+            onPress={this.props.goBack}
+            style={styles.backArrow}
+          >
+            <Text style={styles.arrowText}>
+              BACK
+            </Text>
+          </TouchableHighlight>
+          <Text style={styles.headline}>
+            HOW MUCH WILL YOU GIVE?
           </Text>
-        </TouchableHighlight>
-        <Text style={styles.headline}>
-          HOW MUCH WILL YOU GIVE?
-        </Text>
-        <Text style={styles.paragraph}>
-          Use the buttons below to set your monthly donation cap. Adjust the cap at any time, your monthly donation will never excceed the amount you set below.
-        </Text>
+          <Text style={styles.paragraph}>
+            Use the buttons below to set your monthly donation cap. Adjust the cap at any time, your monthly donation will never excceed the amount you set below.
+          </Text>
 
         <View style={styles.counter}>
-          <View>
-            <Text style={{ fontSize: 40 }}>
-              {this.props.monthlyCap}
-            </Text>
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableHighlight
-              onPress={this.props.handleIncreaseCap}
-              style={styles.buttonAdd}
-            >
-              <Text style={styles.buttonText}>+</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={this.props.handleDecreaseCap}
-              style={styles.buttonMinus}
-            >
-              <Text style={styles.buttonText}>-</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-        <TouchableHighlight
-          onPress={this.props.onDoneMonthlyCapPress}
-          style={styles.save}
-        >
-          <Text>SAVE</Text>
-        </TouchableHighlight>
+                <View>
+                  <Text style={{ fontSize: 40 }}>
+                    {this.props.monthlyCap}
+                  </Text>
+                </View>
 
+        </View>
+
+          <View style={styles.buttonContainer}>
+                <TouchableHighlight
+                  onPress={this.props.handleDecreaseCap}
+                  style={styles.buttonMinus}
+                >
+                  <Text style={styles.buttonText}>-</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  onPress={this.props.handleIncreaseCap}
+                  style={styles.buttonAdd}
+                >
+                  <Text style={styles.buttonText}>+</Text>
+                </TouchableHighlight>
+          </View>
+
+          <View>
+          <TouchableHighlight
+            onPress={this.props.onDoneMonthlyCapPress}
+            style={styles.save}
+          >
+            <Text>Save New Cap</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -105,6 +117,15 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   arrowText: {
+    color: '#fafafa',
+    fontSize: 12,
+    textAlign: 'center',
+    alignSelf: 'center',
+  },
+  capText: {
+    textAlign: 'center',
+    width: '80%',
+    marginBottom: 40,
     color: "#fafafa",
     fontSize: 12,
     textAlign: "center",
@@ -123,9 +144,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 30
+    marginTop: 10
   },
-  buttonAdd: {
+  buttonMinus: {
     height: 40,
     width: 80,
     borderBottomLeftRadius: 20,
@@ -135,7 +156,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#68DEA8",
     overflow: "hidden"
   },
-  buttonMinus: {
+  buttonAdd: {
     height: 40,
     width: 80,
     borderBottomRightRadius: 20,

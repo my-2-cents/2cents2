@@ -4,11 +4,11 @@ import { Alert, StyleSheet, Text, View, Navigator } from 'react-native';
 import Splash from './components/onboard/Splash';
 import Login from './components/onboard/Login';
 import Signup from './components/onboard/Signup';
-import Home from './components/navBar/Home';
-import Nav from './components/navBar/Nav';
-import Charities from './components/navBar/Charities';
-import Profile from './components/navBar/Profile';
-import Activity from './components/navBar/Activity';
+import Home from './components/NavBar/Home';
+import Nav from './components/NavBar/Nav';
+import Charities from './components/NavBar/Charities';
+import Profile from './components/NavBar/Profile';
+import Activity from './components/NavBar/Activity';
 
 export default class App extends React.Component {
 
@@ -134,6 +134,26 @@ export default class App extends React.Component {
     })
   }
 
+  onNewCapSubmit(renderAfterCapUpdate) {
+  console.log('inside newCap submit:', this.state)
+  return fetch('http://localhost:3000/user/cap', {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/JSON'
+    },
+    body: JSON.stringify({
+      cap: this.state.cap
+    })
+  })
+  .then(r => r.json())
+  .then( (data) => {
+    console.log('data:', data)
+  })
+  .then(() => {
+    renderAfterCapUpdate('Monthly Cap')
+  })
+}
+
   render() {
     return (
       <Navigator
@@ -186,6 +206,12 @@ export default class App extends React.Component {
                     token={this.state.token}
                   />
                 </View>
+                )
+              }
+            if (route.id === 'Cap') {
+              return (
+                <MonthlyCap
+                />
               )
             }
           }
