@@ -5,7 +5,8 @@ import {
  TouchableHighlight,
  View,
  Navigator,
- ScrollView
+ ScrollView,
+ Image
 } from 'react-native';
 
 import Nav from './Nav.js'
@@ -21,11 +22,11 @@ export default class Home extends React.Component {
    return(
      <View style={styles.container}>
          <View style={styles.headerBar}>
-            <Text>Hello, </Text>
-           <UserName
-            username={this.props.username}
+           <Image
+            source={require('../../../assets/icons/2centsBall.png')}
+            style={styles.iconImage}
            />
-           <TodaysDate />
+          <Text style={styles.welcomeText}>Welcome, {this.props.username}!</Text>
          </View>
          <View style={styles.charities}>
            <Charities />
@@ -48,8 +49,8 @@ const styles = StyleSheet.create({
  headerBar: {
    padding: 20,
    // flex: 1,
-   flexDirection: 'row',
-   justifyContent: 'space-between',
+   // flexDirection: 'row',
+   // justifyContent: 'space-between',
    backgroundColor: '#eee',
    width: '100%',
    height: 80,
@@ -70,6 +71,17 @@ const styles = StyleSheet.create({
  },
  box: {
   height: 80
+ },
+ iconImage: {
+  height: 70,
+  width: 70,
+  position: 'absolute',
+  margin: 12
+ },
+ welcomeText: {
+  fontSize: 20,
+  padding: 12,
+  backgroundColor: 'transparent'
  }
 });
 
