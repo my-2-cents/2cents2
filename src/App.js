@@ -134,6 +134,25 @@ export default class App extends React.Component {
     })
   }
 
+  onLogoutSubmit() {
+    console.log('before' + this.state.username);
+    this.setState({
+      username: 'logged out user',
+    //       signupUsername: '',
+    //       signupPassword: '',
+    //       signupConfirm: '',
+    //       username: '',
+    //       monthlyCap: null,
+    //       tempSeries: [],
+    //       user_id: null,
+    //       token: null
+    });
+  }
+
+  componentDidUpdate() {
+      console.log('after' + this.state.username);
+  }
+
   onNewCapSubmit(renderAfterCapUpdate) {
   console.log('inside newCap submit:', this.state)
   return fetch('http://localhost:3000/user/cap', {
@@ -204,6 +223,7 @@ export default class App extends React.Component {
                     series={this.state.tempSeries}
                     user_id={this.state.user_id}
                     token={this.state.token}
+                    onLogoutSubmit={this.onLogoutSubmit.bind(this)}
                   />
                 </View>
                 )
